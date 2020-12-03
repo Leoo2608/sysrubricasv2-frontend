@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DefaultComponent } from './layouts/default/default.component';
 import { HomeComponent } from './modules/home/home.component';
 import { LineaAcademicaComponent } from './modules/LineaAcademica/linea-academica/linea-academica.component';
+import { PersonaComponent } from './modules/Persona/persona/persona.component';
 import { PostsComponent } from './modules/posts/posts.component';
 
 /*
@@ -20,6 +21,9 @@ const routes: Routes = [{
   }, {
     path: 'moduloconfig/lineas',
     component: LineaAcademicaComponent
+  }, {
+    path: 'moduloconfig/persona',
+    component: PersonaComponent
   }]
 }];
 
