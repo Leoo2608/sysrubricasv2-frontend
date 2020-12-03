@@ -4,6 +4,7 @@ import { DefaultComponent } from './layouts/default/default.component';
 import { HomeComponent } from './modules/home/home.component';
 import { LineaAcademicaComponent } from './modules/LineaAcademica/linea-academica/linea-academica.component';
 import { PostsComponent } from './modules/posts/posts.component';
+import { SemestreComponent } from './modules/Semestre/semestre/semestre.component';
 
 /*
 Agregar en children cada path por cada componente (CRUD)
@@ -20,6 +21,9 @@ const routes: Routes = [{
   }, {
     path: 'moduloconfig/lineas',
     component: LineaAcademicaComponent
+  },{
+    path: 'moduloconfig/semestres',
+    component: SemestreComponent
   }]
 }];
 
