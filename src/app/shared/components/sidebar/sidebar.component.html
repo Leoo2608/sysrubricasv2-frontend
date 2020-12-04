@@ -13,25 +13,29 @@
       <!-- Sidebar Navidation Menus--><span class="heading">Home</span>
       <ul class="list-unstyled">
         <li><a [routerLink]="['/']"> <i class="fa fa-home"></i>Home </a></li>
-        <li *ngIf="isHome()"><a href=""> <i class="fa fa-wrench"></i>Configuración</a></li>
+        <li *ngIf="isHome()"><a> <i class="fa fa-wrench"></i>Configuración</a></li>
         <li *ngIf="isModConf()" ><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-bar-chart"></i>CRUDs</a>
             <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
               <li><a [routerLink]="['/']">Tipo Unidad Académica</a></li>
               <li><a [routerLink]="['/']">Unidad Académica</a></li>
-              <li><a [routerLink]="['/']">Plan Académico</a></li>
+              <li><a [routerLink]="['/moduloconfig/planes']">Plan Académico</a></li>
               <li><a [routerLink]="['/moduloconfig/lineas']">Linea Académica</a></li>
-              <li><a [routerLink]="['/']">Linea - Plan</a></li>
+              <li><a [routerLink]="['/moduloconfig/planlineas']">Linea - Plan</a></li>
               <li><a [routerLink]="['/']">Semestres</a></li>
               <li><a [routerLink]="['/']">Docentes</a></li>
               <li><a [routerLink]="['/']">Niveles de Logro</a></li>
             </ul>
           </li>
-        <li><a [routerLink]="['/']"> <i class=""></i>Competencias</a></li>
-        <li><a [routerLink]="['/']"> <i class=""></i>Niveles Competencia</a></li>
-        <li><a [routerLink]="['/']"> <i class=""></i>Cursos - Plan</a></li>
-        <li><a [routerLink]="['/']"> <i class=""></i>Competencias - Cursos</a></li>
-        <li><a [routerLink]="['/']"> <i class=""></i>Estudiante - Plan</a></li>
-        <li><a [routerLink]="['/']"> <i class=""></i>Carga - Estudiante</a></li>
+        <li *ngIf="isModConf()"><a [routerLink]="['/']"> <i class=""></i>Competencias</a></li>
+        <li *ngIf="isModConf()"><a [routerLink]="['/']"> <i class=""></i>Niveles Competencia</a></li>
+        <li *ngIf="isModConf()"><a [routerLink]="['/']"> <i class=""></i>Cursos - Plan</a></li>
+        <li *ngIf="isModConf()"><a [routerLink]="['/']"> <i class=""></i>Competencias - Cursos</a></li>
+        <li *ngIf="isModConf()"><a [routerLink]="['/']"> <i class=""></i>Estudiante - Plan</a></li>
+        <li *ngIf="isModConf()"><a [routerLink]="['/']"> <i class=""></i>Carga - Estudiante</a></li>
+        <!--Opciones del Módulo Planificación-->
+        <li *ngIf="isModPlan()"><a [routerLink]="['/']"> <i class=""></i>Expertos Externos</a></li>
+        <!--Opciones del Módulo Seguridad-->
+        <li *ngIf="isModSeg()"><a [routerLink]="['/']"> <i class=""></i>Personas</a></li>
         <li *ngIf="isHome()" ><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Not Available </a>
           <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
             <li><a href="#">Page</a></li>
