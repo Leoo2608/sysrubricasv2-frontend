@@ -1,0 +1,80 @@
+<div class="container alinear">
+    <div class="mt-3 mr-3">
+      <form>
+          <div class="form-group">
+            <label *ngIf="showButtonAdd=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Ingresar Registro</label>
+            <label *ngIf="showButtonsUpdate=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Actualizar Registro</label> <br>
+            
+            <input hidden [(ngModel)]="personaModel.id_persona" name="id_persona" class="form-control">
+           
+            <label for="exampleInputEmail1">Nombre</label>
+            <input id="nombres" [(ngModel)]="personaModel.nombres" name="nombres" class="form-control"  placeholder="nombre completo">
+            <label for="exampleInputEmail1">Apellido Paterno</label>
+            <input id="ape_pat" [(ngModel)]="personaModel.ape_pat" name="ape_pat" class="form-control"  placeholder="apellidos">
+            <label for="exampleInputEmail1">Apellido Materno</label>
+            <input id="ape_mat" [(ngModel)]="personaModel.ape_mat" name="ape_mat" class="form-control"  placeholder="apellidos">
+            <label for="exampleInputEmail1">DNI</label>
+        <input id="dni" [(ngModel)]="personaModel.dni" name="dni" class="form-control"  placeholder="dni completo">
+            <label for="exampleInputEmail1">Telefono</label>
+        t<input id="telefono" [(ngModel)]="personaModel.telefono" name="telefono" class="form-control"  placeholder="numero telefonico">
+
+            <small id="emailHelp" class="form-text text-muted">Ejemplo: Carlos.</small>
+          </div>
+          <div style="display: flex">
+            <button *ngIf="showButtonAdd=='Si'" id="create" (click)="create()" type="submit" class="btn color-add mr-2">Agregar</button>
+            <button *ngIf="showButtonsUpdate=='Si'" id="update" (click)="update()" type="submit" class="btn color-up mr-2">Actualizar</button>
+            <button *ngIf="showButtonsUpdate=='Si'" id="cancelar" (click)="cancelar()" type="submit" class="btn color-cancel">Cancelar</button>
+          </div>
+          <div>
+            <!--<p *ngIf="mensaje=='Si'" class="mt-4" style="font-size: 15px;">**Actualice la Página Si **</p>-->
+          </div>
+      </form>
+    </div>
+  
+    <table class="table tab mt-3">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombres</th>
+          <th scope="col">APE_PAT</th>
+          <th scope="col">APE_MAT</th>
+          <th scope="col">DNI</th>
+          <th scope="col">TELEFONO</th>
+          <th scope="col">ESTADO</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let persona of personas; let i = index" >
+          <td> {{i+1}} </td>
+          <td hidden > {{persona.ID_PERSONA}} </td>
+          <td> {{persona.NOMBRES}} </td>
+          <td> {{persona.APE_PAT}} </td>
+          <td> {{persona.APE_MAT}} </td>
+          <td> {{persona.DNI}} </td>
+          <td> {{persona.TELEFONO}} </td>
+          <td> {{persona.ESTADO}} </td>
+          <td>
+              <button class="btn" (click)="cargarPersona(persona.ID_PERSONA)">
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+              </button>
+          </td>
+          <td>
+              <button class="btn" (click)="delPersona(persona.ID_PERSONA)">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+              </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+  </div>
+  
+  
+  
+  <div>
+    <br>
+    <br>
+  </div>
+  
