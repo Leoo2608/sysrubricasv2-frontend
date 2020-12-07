@@ -1,1 +1,66 @@
-<p>semestre works!</p>
+<div class="container">
+    <div class="row">
+      <div class="col-sm">
+        <div class="card">
+          <div class="card-body">
+            <form #tipoForm="ngForm" (ngSubmit)="addSemestre(tipoForm);" >
+              <input
+                type="hidden"
+                name="ID_TIPO_UNIDAD"          
+              />
+              <div class="row">
+                <div class="input-field col s5">
+                  <label for="exampleFormControlInput1">Nombre : </label>
+                  <br />
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="ng"
+                    placeholder="Ingrese aquí"
+                    #ID_TIPO_UNIDAD="ngModel"                   
+                    name="nombre"
+                    [(ngModel)]="semestreService.selecteSemestre.NOMBRE"
+
+                  />
+                </div>
+              </div>
+              <br>
+              <button class="btn btn-upeu">Guardar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col s5">
+        <table class="table">
+          <thead class="upeu">
+            <th class="white">N°</th>
+            <th class="white">Nombre</th>
+            <th class="white">Estado</th>
+            <th class="white">Editar</th>
+            <th class="white">Eliminar</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let i of semestreService.semestre; let indice = index">
+              <td>{{ indice + 1 }}</td>
+              <td>{{ i.NOMBRE }}</td>
+              <td>{{ i.ESTADO }}</td>
+              <td *ngIf = "estado == 1" >Activo</td>
+  
+              <td>
+                <a (click)="editTipos(i)">
+                  <mat-icon color="red"> <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </mat-icon>
+                </a>
+              </td>
+              <td>
+                <a (click)="deleteTipo(i.ID_TIPO_UNIDAD)">
+                  <mat-icon color="primary"> <i class="fa fa-trash" aria-hidden="true"></i>
+                    </mat-icon>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
