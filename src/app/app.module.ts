@@ -9,13 +9,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { LineaAcademicaComponent } from './modules/LineaAcademica/linea-academica/linea-academica.component';
 import { PlanAcademicoComponent } from './modules/PlanAcademico/plan-academico/plan-academico.component';
 import { PlanLineaComponent } from './modules/PlanLinea/plan-linea/plan-linea.component';
+import { CompetenciaNivelComponent } from './modules/CompetenciaNivel/competencia-nivel/competencia-nivel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LineaAcademicaComponent,
     PlanAcademicoComponent,
-    PlanLineaComponent
+    PlanLineaComponent,
+    CompetenciaNivelComponent
   ],
   imports: [
     BrowserModule,
