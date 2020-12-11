@@ -1,33 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Evaluador } from '../models/evaluador';
-import { EvaluadorService } from '../services/evaluador.service';
+import { ExpertoExterno } from '../models/experto-externo';
+import { ExpertoExternoService } from '../services/experto-externo.service';
 import Swal from 'sweetalert2';
 @Component({
-  selector: 'app-evaluador',
-  templateUrl: './evaluador.component.html',
-  styleUrls: ['./evaluador.component.css']
+  selector: 'app-expertoexterno',
+  templateUrl: './expertoexterno.component.html',
+  styleUrls: ['./expertoexterno.component.css']
 })
-export class EvaluadorComponent implements OnInit {
-  evaluadores: any;
+export class ExpertoexternoComponent implements OnInit {
+  expertoexternos: any;
  
-  evaluadorModel:Evaluador = new Evaluador();
-  constructor(private evaluadorService:EvaluadorService, private router:Router,private activatedRoute:ActivatedRoute) { }
+  expertosModel:ExpertoExterno = new ExpertoExterno();
+  constructor(private expertoExternoservice:ExpertoExternoService, private router:Router,private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.listarEvaluador(); 
+    this.listarExpertos(); 
   }
-  /*Listar*/
-  
-  listarEvaluador():void{
-    this.evaluadorService.getEvaluadores().subscribe(
+
+
+  listarExpertos():void{
+    this.expertoExternoservice.getExpertos().subscribe(
       (data) =>{
-       this.evaluadores = data['cursor_evaluadores'];
-       console.log(this.evaluadores);
+       this.expertoexternos = data['cursor_expertos'];
+       console.log(this.expertoexternos);
       }) 
   }
   /*Eliminar*/
-  delEvaluador(num:number):void{    
+  delExperto(num:number):void{    
         Swal.fire({
           title: '¿Desea eliminar este registro de forma permanente?',
           text: "No podras revertir esto!",
@@ -45,10 +45,10 @@ export class EvaluadorComponent implements OnInit {
               'El registro ha sido eliminado.',
               'success'
               )
-              this.evaluadorService.deleteEvaluador(num).subscribe(
+              this.expertoExternoservice.deleteExperto(num).subscribe(
                 response=>{
                   console.log(response)
-                  this.listarEvaluador();
+                  this.listarExpertos();
                 }
               )
             }
@@ -57,17 +57,17 @@ export class EvaluadorComponent implements OnInit {
     }
   /* Crear */
   public create():void{
-    this.evaluadorService.addEvaluador(this.evaluadorModel).subscribe(
+    this.expertoExternoservice.addExperto(this.expertosModel).subscribe(
       response=>{
-        Swal.fire('Nuevo Evaluador', `El evaluador ${this.evaluadorModel.idevaluador}  ha sido creado con exito`, "success")
-        console.log(this.evaluadorModel);
+        Swal.fire('Nueva Experto Externo', `El experto  ${this.expertosModel.id_persona}  ha sido creado con exito`, "success")
+        console.log(this.expertosModel);
         console.log(response);
       }
     )
-    this.listarEvaluador(); // actualiza el listado
+    this.listarExpertos(); // actualiza el listado
     this.limpiar();
   }
-
+  
   /*Actualizar*/
   mensaje = "No"
   public update():void{
@@ -82,15 +82,15 @@ export class EvaluadorComponent implements OnInit {
     }).then(
         (result)=>{
           if(result.isConfirmed){
-            this.listarEvaluador(); // actualiza el listado
+            this.listarExpertos(); // actualiza el listado
             Swal.fire(
               'Actualizado!',
               'El registro ha sido actualizado.',
               'success'
               )
-              this.evaluadorService.updateEvaluador(this.evaluadorModel, this.evaluadorModel.idevaluador).subscribe(
+              this.expertoExternoservice.updateExperto(this.expertosModel, this.expertosModel.id_experto).subscribe(
                 response=>{
-                  console.log(this.evaluadorModel);
+                  console.log(this.expertosModel);
                   console.log(response);
                 }
               ) 
@@ -106,42 +106,31 @@ export class EvaluadorComponent implements OnInit {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   showButtonsUpdate = 'No';
   showButtonAdd = 'Si';
-  cargarEvaluador(num:number):void{
+  cargarExperto(num:number):void{
         /* deshabilitar btn agregar, habilitar btn update y cancelar*/
         this.showButtonsUpdate = 'Si';
         this.showButtonAdd = 'No';
-        this.evaluadorService.getEvaluador(num).subscribe(
+        this.expertoExternoservice.getExperto(num).subscribe(
           (data)=>{
-          this.evaluadores=data['cursor_evaluadores'] 
-          console.log(this.evaluadores[0].TIPO+' '+this.evaluadores[0].ID_PROYECTO 
-          +' '+this.evaluadores[0].ID_PERSONA +' '+this.evaluadores[0].IDEVALUADOR);
-          this.evaluadorModel.tipo=this.evaluadores[0].TIPO;
-          this.evaluadorModel.id_proyecto=this.evaluadores[0].ID_PROYECTO;
-          this.evaluadorModel.id_persona=this.evaluadores[0].ID_PERSONA;
-          this.evaluadorModel.idevaluador=this.evaluadores[0].IDEVALUADOR;
+          this.expertoexternos=data['cursor_expertos'] 
+          console.log(this.expertoexternos[0].ID_PERSONA + ' '+this.expertoexternos[0].ID_EXPERTO);
+          this.expertosModel.id_persona=this.expertoexternos[0].ID_PERSONA;
+          this.expertosModel.id_experto=this.expertoexternos[0].ID_EXPERTO;
+  
         })
   }
   cancelar(){
     this.showButtonsUpdate = 'No';
     this.showButtonAdd = 'Si';
-    this.listarEvaluador();
+    this.listarExpertos();
     this.limpiar();
   }
   limpiar(){
-    this.evaluadorModel.tipo = "";
+
+   
   }
+
 
 }

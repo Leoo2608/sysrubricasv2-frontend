@@ -67,6 +67,7 @@ export class PersonaComponent implements OnInit {
     this.listarPersona(); // actualiza el listado
     this.limpiar();
   }
+  
   /*Actualizar*/
   mensaje = "No"
   public update():void{
@@ -100,6 +101,11 @@ export class PersonaComponent implements OnInit {
     )
     
   }
+
+
+
+
+
   showButtonsUpdate = 'No';
   showButtonAdd = 'Si';
   cargarPersona(num:number):void{

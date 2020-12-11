@@ -13,7 +13,6 @@ export class EvaluadorService {
   getEvaluadores(): Observable<Evaluador[]>{
     return this.http.get<Evaluador[]>(this.url+'/evaluadores');
   }
-  
   getEvaluador(id:number):Observable<Object>{
     return this.http.get(this.url+'/evaluadores/'+id);
   }
@@ -21,11 +20,10 @@ export class EvaluadorService {
   addEvaluador(evaluador: Evaluador): Observable<number>{
     return this.http.post<number>(this.url+'/evaluadores/add', evaluador, {headers:this.httpHeaders});
   }
-  
   deleteEvaluador(id: number): Observable<number>{
     return this.http.delete<number>(this.url+"/evaluadores/delete/"+id,{headers:this.httpHeaders});
   }
   updateEvaluador(evaluador: Evaluador, id:number):Observable<number>{
-    return this.http.put<number>(this.url+"/lineas/update/"+id, evaluador,{headers:this.httpHeaders});
+    return this.http.put<number>(this.url+"/evaluadores/update/"+id, evaluador,{headers:this.httpHeaders});
   }
 }

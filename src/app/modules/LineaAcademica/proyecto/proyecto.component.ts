@@ -1,33 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Evaluador } from '../models/evaluador';
-import { EvaluadorService } from '../services/evaluador.service';
+import { Proyecto } from '../models/proyecto';
+import { ProyectoService } from '../services/proyecto.service';
 import Swal from 'sweetalert2';
 @Component({
-  selector: 'app-evaluador',
-  templateUrl: './evaluador.component.html',
-  styleUrls: ['./evaluador.component.css']
+  selector: 'app-proyecto',
+  templateUrl: './proyecto.component.html',
+  styleUrls: ['./proyecto.component.css']
 })
-export class EvaluadorComponent implements OnInit {
-  evaluadores: any;
+export class ProyectoComponent implements OnInit {
+  proyectos: any;
  
-  evaluadorModel:Evaluador = new Evaluador();
-  constructor(private evaluadorService:EvaluadorService, private router:Router,private activatedRoute:ActivatedRoute) { }
+  proyectoModel:Proyecto = new Proyecto();
+  
+  constructor(private proyectoService:ProyectoService, private router:Router,private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.listarEvaluador(); 
+    this.listarProyecto(); 
   }
-  /*Listar*/
-  
-  listarEvaluador():void{
-    this.evaluadorService.getEvaluadores().subscribe(
+
+
+  listarProyecto():void{
+    this.proyectoService.getProyectos().subscribe(
       (data) =>{
-       this.evaluadores = data['cursor_evaluadores'];
-       console.log(this.evaluadores);
+       this.proyectos = data['cursor_proyecto'];
+       console.log(this.proyectos);
       }) 
   }
   /*Eliminar*/
-  delEvaluador(num:number):void{    
+  delProyecto(num:number):void{    
         Swal.fire({
           title: '¿Desea eliminar este registro de forma permanente?',
           text: "No podras revertir esto!",
@@ -45,10 +46,10 @@ export class EvaluadorComponent implements OnInit {
               'El registro ha sido eliminado.',
               'success'
               )
-              this.evaluadorService.deleteEvaluador(num).subscribe(
+              this.proyectoService.deleteProyecto(num).subscribe(
                 response=>{
                   console.log(response)
-                  this.listarEvaluador();
+                  this.listarProyecto();
                 }
               )
             }
@@ -57,17 +58,17 @@ export class EvaluadorComponent implements OnInit {
     }
   /* Crear */
   public create():void{
-    this.evaluadorService.addEvaluador(this.evaluadorModel).subscribe(
+    this.proyectoService.addProyecto(this.proyectoModel).subscribe(
       response=>{
-        Swal.fire('Nuevo Evaluador', `El evaluador ${this.evaluadorModel.idevaluador}  ha sido creado con exito`, "success")
-        console.log(this.evaluadorModel);
+        Swal.fire('Nuevo Proyecto', `El Proyecto ${this.proyectoModel.id_proyecto}  ha sido creado con exito`, "success")
+        console.log(this.proyectoModel);
         console.log(response);
       }
     )
-    this.listarEvaluador(); // actualiza el listado
+    this.listarProyecto(); // actualiza el listado
     this.limpiar();
   }
-
+  
   /*Actualizar*/
   mensaje = "No"
   public update():void{
@@ -82,15 +83,15 @@ export class EvaluadorComponent implements OnInit {
     }).then(
         (result)=>{
           if(result.isConfirmed){
-            this.listarEvaluador(); // actualiza el listado
+            this.listarProyecto(); // actualiza el listado
             Swal.fire(
               'Actualizado!',
               'El registro ha sido actualizado.',
               'success'
               )
-              this.evaluadorService.updateEvaluador(this.evaluadorModel, this.evaluadorModel.idevaluador).subscribe(
+              this.proyectoService.updateProyecto(this.proyectoModel, this.proyectoModel.id_proyecto).subscribe(
                 response=>{
-                  console.log(this.evaluadorModel);
+                  console.log(this.proyectoModel);
                   console.log(response);
                 }
               ) 
@@ -106,42 +107,36 @@ export class EvaluadorComponent implements OnInit {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   showButtonsUpdate = 'No';
   showButtonAdd = 'Si';
-  cargarEvaluador(num:number):void{
+  cargarProyecto(num:number):void{
         /* deshabilitar btn agregar, habilitar btn update y cancelar*/
         this.showButtonsUpdate = 'Si';
         this.showButtonAdd = 'No';
-        this.evaluadorService.getEvaluador(num).subscribe(
+        this.proyectoService.getProyecto(num).subscribe(
           (data)=>{
-          this.evaluadores=data['cursor_evaluadores'] 
-          console.log(this.evaluadores[0].TIPO+' '+this.evaluadores[0].ID_PROYECTO 
-          +' '+this.evaluadores[0].ID_PERSONA +' '+this.evaluadores[0].IDEVALUADOR);
-          this.evaluadorModel.tipo=this.evaluadores[0].TIPO;
-          this.evaluadorModel.id_proyecto=this.evaluadores[0].ID_PROYECTO;
-          this.evaluadorModel.id_persona=this.evaluadores[0].ID_PERSONA;
-          this.evaluadorModel.idevaluador=this.evaluadores[0].IDEVALUADOR;
+          this.proyectos=data['cursor_proyecto'] 
+          console.log(this.proyectos[0].ID_PERSONA + ' '+this.proyectos[0].GRUPOS +' '+this.proyectos[0].CICLO 
+          +' '+this.proyectos[0].ID_SEMESTRE + ' '+this.proyectos[0].ID_PROYECTO);
+      
+          this.proyectoModel.id_persona=this.proyectos[0].ID_PERSONA;
+          this.proyectoModel.grupos=this.proyectos[0].GRUPOS;
+          this.proyectoModel.ciclo=this.proyectos[0].CICLO;
+          this.proyectoModel.id_semestre=this.proyectos[0].ID_SEMESTRE;
+          this.proyectoModel.id_proyecto=this.proyectos[0].ID_PROYECTO;
         })
   }
   cancelar(){
     this.showButtonsUpdate = 'No';
     this.showButtonAdd = 'Si';
-    this.listarEvaluador();
+    this.listarProyecto();
     this.limpiar();
   }
   limpiar(){
-    this.evaluadorModel.tipo = "";
+    this.proyectoModel.ciclo= "";
+
   }
+
+
 
 }

@@ -16,7 +16,7 @@
             <label for="exampleInputEmail1">DNI</label>
         <input id="dni" [(ngModel)]="personaModel.dni" name="dni" class="form-control"  placeholder="dni completo">
             <label for="exampleInputEmail1">Telefono</label>
-        t<input id="telefono" [(ngModel)]="personaModel.telefono" name="telefono" class="form-control"  placeholder="numero telefonico">
+        <input id="telefono" [(ngModel)]="personaModel.telefono" name="telefono" class="form-control"  placeholder="numero telefonico">
 
             <small id="emailHelp" class="form-text text-muted">Ejemplo: Carlos.</small>
           </div>
@@ -31,7 +31,7 @@
       </form>
     </div>
   
-    <table class="table tab mt-3">
+    <table class="table tab mt-3" >
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -46,9 +46,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let persona of personas; let i = index" >
-          <td> {{i+1}} </td>
-          <td hidden > {{persona.ID_PERSONA}} </td>
+        <tr *ngFor="let persona of personas" >
+          <td> {{persona.ID_PERSONA}} </td>
           <td> {{persona.NOMBRES}} </td>
           <td> {{persona.APE_PAT}} </td>
           <td> {{persona.APE_MAT}} </td>

@@ -6,6 +6,19 @@ import { LineaAcademicaComponent } from './modules/LineaAcademica/linea-academic
 import { PostsComponent } from './modules/posts/posts.component';
 import { EvaluadorComponent } from './modules/LineaAcademica/evaluador/evaluador.component';
 import { PersonaComponent } from './modules/LineaAcademica/persona/persona.component';
+import { ExpertoexternoComponent} from './modules/LineaAcademica/expertoexterno/expertoexterno.component';
+
+import { DocmetodologiaComponent } from './modules/LineaAcademica/docmetodologia/docmetodologia.component';
+import { InstrumentoEvaluacionComponent } from './modules/LineaAcademica/instrumento-evaluacion/instrumento-evaluacion.component';
+import { HitosComponent } from './modules/LineaAcademica/hitos/hitos.component';
+
+import { ProyectoComponent } from './modules/LineaAcademica/proyecto/proyecto.component';
+import { SemestreComponent } from './modules/LineaAcademica/semestre/semestre.component';
+import { UnidadAcademicaComponent } from './modules/LineaAcademica/unidad-academica/unidad-academica.component';
+import { CursoProyectoComponent } from './modules/LineaAcademica/curso-proyecto/curso-proyecto.component';
+
+
+
 /*
 Agregar en children cada path por cada componente (CRUD)
 */
@@ -27,6 +40,30 @@ const routes: Routes = [{
   } , {
     path: 'persona',
     component: PersonaComponent
+  },{
+    path: 'expertoexterno' ,
+    component: ExpertoexternoComponent
+  } ,{
+    path: 'docmetodologia' ,
+    component: DocmetodologiaComponent
+  } , {
+    path: 'instrumento-evaluacion' , 
+    component:InstrumentoEvaluacionComponent
+  } , {
+    path: 'hitos',
+    component:HitosComponent
+  } , {
+    path: 'proyecto' , 
+    component:ProyectoComponent
+  } ,{
+    path: 'semestre',
+    component:SemestreComponent
+  } ,{
+    path:'unidad-academica' , 
+    component:UnidadAcademicaComponent
+  } ,{
+    path:'curso-proyecto' ,
+    component:CursoProyectoComponent
   }]
 }];
 

@@ -1,33 +1,34 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Evaluador } from '../models/evaluador';
-import { EvaluadorService } from '../services/evaluador.service';
+import { Hitos } from '../models/hitos';
+import { HitosService } from '../services/hitos.service';
 import Swal from 'sweetalert2';
 @Component({
-  selector: 'app-evaluador',
-  templateUrl: './evaluador.component.html',
-  styleUrls: ['./evaluador.component.css']
+  selector: 'app-hitos',
+  templateUrl: './hitos.component.html',
+  styleUrls: ['./hitos.component.css']
 })
-export class EvaluadorComponent implements OnInit {
-  evaluadores: any;
+export class HitosComponent implements OnInit {
+  hitos: any;
  
-  evaluadorModel:Evaluador = new Evaluador();
-  constructor(private evaluadorService:EvaluadorService, private router:Router,private activatedRoute:ActivatedRoute) { }
+  hitoModel:Hitos = new Hitos();
+
+  constructor(private hitosService:HitosService, private router:Router,private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.listarEvaluador(); 
+    this.listarHito(); 
   }
-  /*Listar*/
-  
-  listarEvaluador():void{
-    this.evaluadorService.getEvaluadores().subscribe(
+
+
+  listarHito():void{
+    this.hitosService.getHitos().subscribe(
       (data) =>{
-       this.evaluadores = data['cursor_evaluadores'];
-       console.log(this.evaluadores);
+       this.hitos = data['cursor_hitos'];
+       console.log(this.hitos);
       }) 
   }
   /*Eliminar*/
-  delEvaluador(num:number):void{    
+  delHito(num:number):void{    
         Swal.fire({
           title: '¿Desea eliminar este registro de forma permanente?',
           text: "No podras revertir esto!",
@@ -45,10 +46,10 @@ export class EvaluadorComponent implements OnInit {
               'El registro ha sido eliminado.',
               'success'
               )
-              this.evaluadorService.deleteEvaluador(num).subscribe(
+              this.hitosService.deleteHito(num).subscribe(
                 response=>{
                   console.log(response)
-                  this.listarEvaluador();
+                  this.listarHito();
                 }
               )
             }
@@ -57,17 +58,17 @@ export class EvaluadorComponent implements OnInit {
     }
   /* Crear */
   public create():void{
-    this.evaluadorService.addEvaluador(this.evaluadorModel).subscribe(
+    this.hitosService.addHito(this.hitoModel).subscribe(
       response=>{
-        Swal.fire('Nuevo Evaluador', `El evaluador ${this.evaluadorModel.idevaluador}  ha sido creado con exito`, "success")
-        console.log(this.evaluadorModel);
+        Swal.fire('Nueva Hito', `EL hito  ${this.hitoModel.documento}  ha sido creado con exito`, "success")
+        console.log(this.hitoModel);
         console.log(response);
       }
     )
-    this.listarEvaluador(); // actualiza el listado
+    this.listarHito(); // actualiza el listado
     this.limpiar();
   }
-
+  
   /*Actualizar*/
   mensaje = "No"
   public update():void{
@@ -82,15 +83,15 @@ export class EvaluadorComponent implements OnInit {
     }).then(
         (result)=>{
           if(result.isConfirmed){
-            this.listarEvaluador(); // actualiza el listado
+            this.listarHito(); // actualiza el listado
             Swal.fire(
               'Actualizado!',
               'El registro ha sido actualizado.',
               'success'
               )
-              this.evaluadorService.updateEvaluador(this.evaluadorModel, this.evaluadorModel.idevaluador).subscribe(
+              this.hitosService.updateHito(this.hitoModel, this.hitoModel.id_hito).subscribe(
                 response=>{
-                  console.log(this.evaluadorModel);
+                  console.log(this.hitoModel);
                   console.log(response);
                 }
               ) 
@@ -106,42 +107,35 @@ export class EvaluadorComponent implements OnInit {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
   showButtonsUpdate = 'No';
   showButtonAdd = 'Si';
-  cargarEvaluador(num:number):void{
+  cargarHito(num:number):void{
         /* deshabilitar btn agregar, habilitar btn update y cancelar*/
         this.showButtonsUpdate = 'Si';
         this.showButtonAdd = 'No';
-        this.evaluadorService.getEvaluador(num).subscribe(
+        this.hitosService.getHito(num).subscribe(
           (data)=>{
-          this.evaluadores=data['cursor_evaluadores'] 
-          console.log(this.evaluadores[0].TIPO+' '+this.evaluadores[0].ID_PROYECTO 
-          +' '+this.evaluadores[0].ID_PERSONA +' '+this.evaluadores[0].IDEVALUADOR);
-          this.evaluadorModel.tipo=this.evaluadores[0].TIPO;
-          this.evaluadorModel.id_proyecto=this.evaluadores[0].ID_PROYECTO;
-          this.evaluadorModel.id_persona=this.evaluadores[0].ID_PERSONA;
-          this.evaluadorModel.idevaluador=this.evaluadores[0].IDEVALUADOR;
+          this.hitos=data['cursor_hitos'] 
+          console.log(this.hitos[0].ID_CURSO_PROY + ' '+this.hitos[0].DOCUMENTO +' '+this.hitos[0].FECHA 
+          +' '+this.hitos[0].ID_HITO);
+  
+
+          this.hitoModel.id_curso_proy=this.hitos[0].ID_CURSO_PROY;
+          this.hitoModel.documento=this.hitos[0].DOCUMENTO;
+          this.hitoModel.fecha=this.hitos[0].FECHA;
+          this.hitoModel.id_hito=this.hitos[0].ID_HITO;
         })
   }
   cancelar(){
     this.showButtonsUpdate = 'No';
     this.showButtonAdd = 'Si';
-    this.listarEvaluador();
+    this.listarHito();
     this.limpiar();
   }
   limpiar(){
-    this.evaluadorModel.tipo = "";
+    this.hitoModel.documento = "";
+    this.hitoModel.fecha = "";
   }
+
 
 }

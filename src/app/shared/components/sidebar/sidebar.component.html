@@ -6,7 +6,7 @@
       <div class="sidebar-header d-flex align-items-center">
         <div class="avatar"><img src="../../../../assets/img/andssuologo.png" alt="..." class="img-fluid rounded-circle"></div>
         <div class="title pl-2">
-          <h1 class="h5">Diego Huerto</h1>
+          <h1 class="h5">Henrry Orbezo</h1>
           <p>Administrador</p>
         </div>
       </div>
@@ -32,11 +32,12 @@
         <li><a [routerLink]="['/']"> <i class=""></i>Competencias - Cursos</a></li>
         <li><a [routerLink]="['/']"> <i class=""></i>Estudiante - Plan</a></li>
         <li><a [routerLink]="['/']"> <i class=""></i>Carga - Estudiante</a></li>
-        <li *ngIf="isHome()" ><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Not Available </a>
+        <li *ngIf="isHome()" ><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> 
+          <i class="icon-interface-windows"></i>Configurar ProyInt </a>
           <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-            <li><a href="#">Page</a></li>
-            <li><a href="#">Page</a></li>
-            <li><a href="#">Page</a></li>
+            <li><a id="moduloconfig" [routerLink]="['/proyecto']" class="btn color-upeu mt-4">Proyecto</a></li>
+            <li><a id="moduloconfig" [routerLink]="['/semestre']" class="btn color-upeu mt-4">Semestre</a></li>
+            <li><a id="moduloconfig" [routerLink]="['/unidad-academica']" class="btn color-upeu mt-4">Unidad Academica</a></li>
           </ul>
         </li>
       </ul>

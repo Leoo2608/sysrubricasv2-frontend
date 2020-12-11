@@ -1,0 +1,69 @@
+<div class="container alinear">
+    <div class="mt-3 mr-3">
+      <form>
+          <div class="form-group">
+            <label *ngIf="showButtonAdd=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Ingresar Registro</label>
+            <label *ngIf="showButtonsUpdate=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Actualizar Registro</label> <br>
+            
+            <input hidden [(ngModel)]="cursoproyectoModel.id_curso_proy" name="id_curso_proy" class="form-control">
+           
+            <label for="exampleInputEmail1">N° Proyecto</label>
+            <input id="id_proyecto" [(ngModel)]="cursoproyectoModel.id_proyecto" name="id_proyecto" class="form-control"  placeholder="asigne un Proyecto">
+            <label for="exampleInputEmail1">N° Carga</label>
+            <input id="id_carga" [(ngModel)]="cursoproyectoModel.id_carga" name="id_carga" class="form-control"  placeholder="asigne una carga">
+            
+
+            <small id="emailHelp" class="form-text text-muted">Ejemplo: ******.</small>
+          </div>
+          <div style="display: flex">
+            <button *ngIf="showButtonAdd=='Si'" id="create" (click)="create()" type="submit" class="btn color-add mr-2">Agregar</button>
+            <button *ngIf="showButtonsUpdate=='Si'" id="update" (click)="update()" type="submit" class="btn color-up mr-2">Actualizar</button>
+            <button *ngIf="showButtonsUpdate=='Si'" id="cancelar" (click)="cancelar()" type="submit" class="btn color-cancel">Cancelar</button>
+          </div>
+          <div>
+            <!--<p *ngIf="mensaje=='Si'" class="mt-4" style="font-size: 15px;">**Actualice la Página Si **</p>-->
+          </div>
+      </form>
+    </div>
+  
+    <table class="table tab mt-3">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">ID_PROYECTO</th>
+          <th scope="col">ID_CARGA</th>
+          <th scope="col">ESTADO</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cursoproyecto of cursoproyectos" >
+          <td> {{cursoproyecto.ID_CURSO_PROY}} </td>
+          <td> {{cursoproyecto.ID_PROYECTO}} </td>
+          <td> {{cursoproyecto.ID_CARGA}} </td>
+          <td> {{cursoproyecto.ESTADO}} </td>
+          <td>
+              <button class="btn" (click)="cargarCursoProyecto(cursoproyecto.ID_CURSO_PROY)">
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+              </button>
+          </td>
+          <td>
+              <button class="btn" (click)="delCursoProyecto(cursoproyecto.ID_CURSO_PROY)">
+                  <i class="fa fa-trash" aria-hidden="true"></i>
+              </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+  </div>
+  
+  
+  
+  <div>
+    <br>
+    <br>
+  </div>
+  
+
