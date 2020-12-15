@@ -237,4 +237,6 @@ export class CompetenciaNivelComponent implements OnInit {
     this.compnivelModel.idcomp = null;
     this.compnivelModel.idnivel = null;
   }
+   
+  /* Cambios Importantes */
 }
