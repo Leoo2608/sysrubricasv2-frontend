@@ -220,9 +220,10 @@ export class CompetenciaNivelComponent implements OnInit {
                 response=>{
                   console.log(this.compnivelModel);
                   console.log(response);
+                  this.cancelar();
+                  this.listarNivelesCompetencias(this.idcomp);
                 }) 
-              this.cancelar();
-              this.listarNivelesCompetencias(this.idcomp);
+           
             }
           }   
     )
