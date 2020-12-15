@@ -40,3 +40,13 @@
     resize: none;
     height: 7em;
 }
+
+.box1{
+  border-top:solid 1px #dad8d8;
+  width: 100%;
+  padding-top: 20px;
+}
+.box1 p{
+    font-size: 20px;
+    font-weight: 400;
+}

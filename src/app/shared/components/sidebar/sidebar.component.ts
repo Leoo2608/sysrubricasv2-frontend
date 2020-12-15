@@ -48,7 +48,8 @@ export class SidebarComponent implements OnInit {
   isModConf():boolean{
     if(this.router.url==='/moduloconfig' || this.router.url==='/moduloconfig/lineas'
     || this.router.url==='/moduloconfig/planes' || this.router.url==='/moduloconfig/planlineas'
-    || this.router.url==='/moduloconfig/competenciasniveles' || this.router.url==='/moduloconfig/semestres'){
+    || this.router.url==='/moduloconfig/competenciasniveles' || this.router.url==='/moduloconfig/semestres'
+    || this.router.url==='/moduloconfig/competenciasniveles' || this.router.url==='/moduloconfig/competenciascursos'){
       return true;
     }else{
       return false;
