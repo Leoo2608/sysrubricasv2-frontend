@@ -23,7 +23,6 @@ export class SidebarComponent implements OnInit {
       $('.content-inner').toggleClass('active');
       $(document).trigger('sidebarChanged');
 
-      console.log('Estoy funcando')
 
       if ($(window).outerWidth() > 1183) {
           if ($('#toggle-btn').hasClass('active')) {
@@ -39,7 +38,6 @@ export class SidebarComponent implements OnInit {
       }
 
       if ($(window).outerWidth() < 1183) {
-        console.log('Entrando en segundo IF')
           $('.navbar-header .brand-small').show();
       }
   });

@@ -12,7 +12,6 @@ import { ModuloPlanComponent } from './modules/Modulos/modulo-plan/modulo-plan.c
 import { ModuloSegComponent } from './modules/Modulos/modulo-seg/modulo-seg.component';
 import { PlanAcademicoComponent } from './modules/PlanAcademico/plan-academico/plan-academico.component';
 import { PlanLineaComponent } from './modules/PlanLinea/plan-linea/plan-linea.component';
-import { PostsComponent } from './modules/posts/posts.component';
 
 /*
 Agregar en children cada path por cada componente (CRUD)
@@ -42,16 +41,16 @@ const routes: Routes = [{
     /* Agregar sus componentes a partir de aca */
     path: 'moduloconfig/lineas',
     component: LineaAcademicaComponent
-  },{
+  }, {
     path: 'moduloconfig/planes',
     component: PlanAcademicoComponent
-  },{
+  }, {
     path: 'moduloconfig/planlineas',
     component: PlanLineaComponent
-  },{
+  }, {
     path: 'moduloconfig/competenciasniveles',
     component: CompetenciaNivelComponent
-  },{
+  }, {
     path: 'moduloconfig/competenciascursos',
     component: CompetenciaCursoComponent
   }]

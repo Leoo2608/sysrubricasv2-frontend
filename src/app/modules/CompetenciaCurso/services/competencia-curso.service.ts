@@ -40,7 +40,7 @@ export class CompetenciaCursoService {
   }
 
   getCompetencias(id:number):Observable<Object[]>{
-    return this.http.get<Object[]>('http://localhost:9090/competencia/allxplanl/'+id);
+    return this.http.get<Object[]>('http://localhost:9090/competencias/allxplanl/'+id);
   }
   getCompetenciaNivelesDin(id:number):Observable<Object[]>{
     return this.http.get<Object[]>(this.url+'/cmpniveles/only/'+id);
