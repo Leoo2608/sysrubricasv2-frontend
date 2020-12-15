@@ -21,15 +21,17 @@ export class SemestreService {
   getSemestre(id:number):Observable<Semestre[]> {
     return this.http.get<Semestre[]>(this.semestreUrl+'/'+id);
   }
+  
   addSemestre(semestre: Semestre): Observable<number>{
     return this.http.post<number>(this.semestreUrl+"/add", semestre, {headers:this.httpHeaders});
   }
 
-  deleteSemestre(semestre: Semestre) {
-    return this.http.delete(this.semestreUrl+'/delete/'+semestre.ID_SEMESTRE);
+  deleteSemestre(num:number):Observable<number> {
+    return this.http.delete<number>(this.semestreUrl+'/delete/'+num, {headers:this.httpHeaders});
   }
 
-  updateSemestre(semestre: Semestre) {
-    return this.http.put(`${this.semestreUrl}/update/`, semestre);
+  updateSemestre(semestre: Semestre, id:number):Observable<number> {
+    return this.http.put<number>(this.semestreUrl+"/update/"+id, semestre,{headers:this.httpHeaders});
   }
+  
 }

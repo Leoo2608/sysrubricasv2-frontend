@@ -3,30 +3,28 @@
       <div class="col-sm">
         <div class="card">
           <div class="card-body">
-            <form #tipoForm="ngForm" (ngSubmit)="addSemestre(tipoForm);" >
-              <input
-                type="hidden"
-                name="ID_TIPO_UNIDAD"          
-              />
-              <div class="row">
-                <div class="input-field col s5">
-                  <label for="exampleFormControlInput1">Nombre : </label>
-                  <br />
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="ng"
-                    placeholder="Ingrese aquí"
-                    #ID_TIPO_UNIDAD="ngModel"                   
-                    name="nombre"
-                    [(ngModel)]="semestreService.selecteSemestre.NOMBRE"
-
-                  />
-                </div>
+            <form>
+              <div class="form-group">
+                <label *ngIf="showButtonAdd=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Ingresar Registro</label>
+                <label *ngIf="showButtonsUpdate=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Actualizar Registro</label> <br>
+                
+                <label for="exampleInputEmail1">Nombre:</label>
+                
+                <input hidden [(ngModel)]="semestreModel.id_semestre" name="id_semestre" class="form-control">
+                
+                <input id="nombre" [(ngModel)]="semestreModel.nombre" name="nombre" class="form-control"  placeholder="Nombre del Semestre">
+                
+                
+                <small id="emailHelp" class="form-text text-muted">Ejemplo: 2019-1.</small>
               </div>
-              <br>
-              <button class="btn btn-upeu">Guardar</button>
-            </form>
+              <div style="display: flex">
+                <button *ngIf="showButtonAdd=='Si'" id="create" (click)="create()" type="submit" class="btn color-add mr-2">Agregar</button>
+                <button *ngIf="showButtonsUpdate=='Si'" id="update" (click)="update()" type="submit" class="btn color-up mr-2">Actualizar</button>
+                <button *ngIf="showButtonsUpdate=='Si'" id="cancelar" (click)="cancelar()" type="submit" class="btn color-cancel">Cancelar</button>
+              </div>
+              <div>
+              </div>
+          </form>
           </div>
         </div>
       </div>
@@ -40,24 +38,21 @@
             <th class="white">Eliminar</th>
           </thead>
           <tbody>
-            <tr *ngFor="let i of semestreService.semestre; let indice = index">
+            <tr *ngFor="let i of semestre; let indice = index">
               <td>{{ indice + 1 }}</td>
               <td>{{ i.NOMBRE }}</td>
               <td>{{ i.ESTADO }}</td>
-              <td *ngIf = "estado == 1" >Activo</td>
-  
               <td>
-                <a (click)="editTipos(i)">
-                  <mat-icon color="red"> <i class="fa fa-pencil" aria-hidden="true"></i>
-                    </mat-icon>
-                </a>
+                <button class="btn btn-success" (click)="cargarSemestre(i.ID_SEMESTRE)">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                </button>
               </td>
               <td>
-                <a (click)="deleteTipo(i.ID_TIPO_UNIDAD)">
-                  <mat-icon color="primary"> <i class="fa fa-trash" aria-hidden="true"></i>
-                    </mat-icon>
-                </a>
+                <button class="btn btn-danger" (click)="delSemestre(i.ID_SEMESTRE)">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                </button>
               </td>
+             
             </tr>
           </tbody>
         </table>

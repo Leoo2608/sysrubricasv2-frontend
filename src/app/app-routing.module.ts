@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DefaultComponent } from './layouts/default/default.component';
+import { CompetenciaComponent } from './modules/Competencia/competencia/competencia.component';
 import { CompetenciaNivelComponent } from './modules/CompetenciaNivel/competencia-nivel/competencia-nivel.component';
 import { HomeComponent } from './modules/home/home.component';
 import { LineaAcademicaComponent } from './modules/LineaAcademica/linea-academica/linea-academica.component';
@@ -54,6 +55,9 @@ const routes: Routes = [{
   }, {
     path: 'moduloconfig/competenciasniveles',
     component: CompetenciaNivelComponent
+  }, {
+    path: 'moduloconfig/competencia',
+    component: CompetenciaComponent
   }]
 }];
 

@@ -11,6 +11,7 @@ import { LineaAcademicaComponent } from './modules/LineaAcademica/linea-academic
 import { PlanAcademicoComponent } from './modules/PlanAcademico/plan-academico/plan-academico.component';
 import { PlanLineaComponent } from './modules/PlanLinea/plan-linea/plan-linea.component';
 import { CompetenciaNivelComponent } from './modules/CompetenciaNivel/competencia-nivel/competencia-nivel.component';
+import { CompetenciaComponent } from './modules/Competencia/competencia/competencia.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CompetenciaNivelComponent } from './modules/CompetenciaNivel/competenci
     SemestreComponent,
     PlanAcademicoComponent,
     PlanLineaComponent,
-    CompetenciaNivelComponent
+    CompetenciaNivelComponent,
+    CompetenciaComponent
   ],
   imports: [
     BrowserModule,

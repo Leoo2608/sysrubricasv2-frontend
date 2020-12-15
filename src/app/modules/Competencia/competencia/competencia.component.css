@@ -10,6 +10,10 @@
     background-color: rgb(177, 43, 43);
     color: white;
 }
+.resize{
+    resize: none;
+    height: 7em;
+}
 #nombre{
-    width: 700px;
+    width: 500px;
 }
