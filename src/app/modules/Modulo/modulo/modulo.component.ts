@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 import { Modulo } from '../models/modulo';
 import { ModuloService } from '../services/modulo.service';
-import Swal from 'sweetalert2';
-
 
 @Component({
   selector: 'app-modulo',
@@ -79,6 +78,7 @@ showButtonAdd = 'Si';
     this.ModuloService.getModulo(id).subscribe( 
       (data)=>{
       this.receptor=data['cursor_modulos'] 
+      console.log(this.receptor)
       this.ModuloModel.idmodulo=this.receptor[0].ID_MODULO;
       this.ModuloModel.nombremod=this.receptor[0].NOMBREMOD;
     }

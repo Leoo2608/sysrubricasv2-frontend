@@ -26,6 +26,7 @@ showButtonAdd = 'Si';
     this.PersonaService.getPersonas().subscribe(
       (data) =>{
        this.personas = data['cursor_personas'];
+       console.log(this.personas)
       }
       ) 
   }
@@ -43,7 +44,8 @@ showButtonAdd = 'Si';
   }
 
 
-  eliminarPersona(id:number):void{    
+  eliminarPersona(id:number):void{   
+    console.log(id) 
     Swal.fire({
       title: '¿Desea eliminar este registro de forma permanente?',
       text: "No podras revertir esto!",
