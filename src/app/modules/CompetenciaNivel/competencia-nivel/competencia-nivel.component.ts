@@ -223,7 +223,6 @@ export class CompetenciaNivelComponent implements OnInit {
                   this.cancelar();
                   this.listarNivelesCompetencias(this.idcomp);
                 }) 
-           
             }
           }   
     )
