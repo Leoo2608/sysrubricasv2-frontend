@@ -14,6 +14,7 @@ import { ModuloSegComponent } from './modules/Modulos/modulo-seg/modulo-seg.comp
 import { PlanAcademicoComponent } from './modules/PlanAcademico/plan-academico/plan-academico.component';
 import { PlanLineaComponent } from './modules/PlanLinea/plan-linea/plan-linea.component';
 import { SemestreComponent } from './modules/Semestre/semestre/semestre.component';
+
 /*
 Agregar en children cada path por cada componente (CRUD)
 */
@@ -45,6 +46,7 @@ const routes: Routes = [{
   }, {
     path: 'moduloconfig/semestres',
     component: SemestreComponent
+
   }, {
     path: 'moduloconfig/planes',
     component: PlanAcademicoComponent

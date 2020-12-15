@@ -25,11 +25,7 @@ export class CompetenciaNivelService {
     return this.http.delete<number>(this.url+'/cmpniveles/delete/'+id,{headers:this.httpHeaders});
   }
   updateCompetenciaNivel(compn: CompetenciaNivel, id:number):Observable<number>{
-    return this.http.put<number>(this.url+'/cmpniveles/update/'+id, compn, {headers:this.httpHeaders});
-  }
-
-  getCompetenciaNivelesDin(id:number):Observable<CompetenciaNivel[]>{
-    return this.http.get<CompetenciaNivel[]>(this.url+'/cmpniveles/only/'+id);
+    return this.http.put<number>(this.url+'/cmpniveles/update'+id, compn, {headers:this.httpHeaders});
   }
 
   /* Selectors  and Others */
@@ -49,13 +45,7 @@ export class CompetenciaNivelService {
   getLineasxPlan(id:number):Observable<Object[]>{
     return this.http.get<Object[]>(this.url+'/planlineas/lineas/'+id);
   }
+  getLineasAcademicasxPlan(){
 
-  getCompetencias(id:number):Observable<Object[]>{
-    return this.http.get<Object[]>('http://localhost:9090/competencia/allxplanl/'+id);
   }
-  
-  getNiveles():Observable<Object[]>{
-    return this.http.get<Object[]>('http://localhost:9090/niveldelogro/all');
-  }
-
 }
