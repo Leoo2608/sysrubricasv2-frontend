@@ -5,14 +5,14 @@
             <label *ngIf="showButtonAdd=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Ingresar Registro</label>
             <label *ngIf="showButtonsUpdate=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Actualizar Registro</label> <br>
             <label for="exampleInputEmail1">Nombre</label>
-            <input hidden [(ngModel)]="lineaModel.id_linea" name="id_linea" class="form-control">
-            <input id="nombre" [(ngModel)]="lineaModel.nombre" name="nombre" class="form-control"  placeholder="Nombre de Línea">
-            <small id="emailHelp" class="form-text text-muted">Ejemplo: Gestión de TI.</small>
+            <input hidden [(ngModel)]="rolModel.idrol" name="id_rol" class="form-control">
+            <input [(ngModel)]="rolModel.nombre" name="nombre" class="form-control"  placeholder="Nombre de Persona">
+            <small id="emailHelp" class="form-text text-muted">Ejemplo: Docente</small>
           </div>
           <div style="display: flex">
-            <button *ngIf="showButtonAdd=='Si'" id="create" (click)="create()" type="submit" class="btn color-add mr-2">Agregar</button>
-            <button *ngIf="showButtonsUpdate=='Si'" id="update" (click)="update()" type="submit" class="btn color-up mr-2">Actualizar</button>
-            <button *ngIf="showButtonsUpdate=='Si'" id="cancelar" (click)="cancelar()" type="submit" class="btn color-cancel">Cancelar</button>
+            <button *ngIf="showButtonAdd=='Si'" (click)="agregarRol()" id="create" type="submit" class="btn color-add mr-2">Agregar</button>
+            <button *ngIf="showButtonsUpdate=='Si'" (click)="editarRol()" id="update"  type="submit" class="btn color-up mr-2">Actualizar</button>
+            <button *ngIf="showButtonsUpdate=='Si'" (click)="cancelar()" id="cancelar" type="submit" class="btn color-cancel">Cancelar</button>
           </div>
           <div>
             <!--<p *ngIf="mensaje=='Si'" class="mt-4" style="font-size: 15px;">**Actualice la Página Si **</p>-->
@@ -25,24 +25,24 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Nombre</th>
-          <th scope="col">Estado</th>
+          <th class="col">Estado</th>
           <th scope="col">Editar</th>
           <th scope="col">Eliminar</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let linea of lineas; let i = index" >
+        <tr *ngFor="let x of roles; let i = index" >
           <td> {{i+1}} </td>
-          <td hidden > {{linea.ID_LINEA}} </td>
-          <td> {{linea.NOMBRE}} </td>
-          <td> {{linea.ESTADO}} </td>
+          <td hidden > {{x.ID_ROL}} </td>
+          <td> {{x.NOMBRE}} </td>
+          <td> {{x.ESTADO}} </td>
           <td>
-              <button class="btn" (click)="cargarRol(linea.ID_LINEA)">
+              <button (click)="cargarRol(x.ID_ROL)" class="btn">
                   <i class="fa fa-pencil" aria-hidden="true"></i>
               </button>
           </td>
           <td>
-              <button class="btn" (click)="delLinea(linea.ID_LINEA)">
+              <button (click)="eliminarRol(x.ID_ROL)" class="btn" >
                   <i class="fa fa-trash" aria-hidden="true"></i>
               </button>
           </td>
