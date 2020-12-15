@@ -11,23 +11,10 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand color-upeu-letras ml-3" style="font-size: 15px;"> |&nbsp;&nbsp;Configuración del Proceso de Evaluación y del Perfil de Egreso</a>
-    <div class="collapse navbar-collapse " id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-        </li>
-        <li class="nav-item dropdown ">
-          <a class="nav-link dropdown-toggle color-upeu-letras" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Opciones
-          </a>
-          <div class="dropdown-menu " aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" [routerLink]="['/moduloconfig/plan/listar']">Planes Académicos</a>
-            <a class="dropdown-item" [routerLink]="['/moduloconfig/linea/listar']">Líneas Académicas</a>   
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" [routerLink]="['/moduloconfig/planlinea/listar']">Planes - Líneas</a>   
-          </div>
-        </li>
-      </ul>
-    </div>
-  </nav>
+    <a *ngIf="isModConf()" class="navbar-brand color-upeu-letras ml-3" style="font-size: 15px;"> |&nbsp;&nbsp;Configuración del Proceso de Evaluación y del Perfil de Egreso</a>
+    <a *ngIf="isModPlan()" class="navbar-brand color-upeu-letras ml-3" style="font-size: 15px;"> |&nbsp;&nbsp;Planificación del Proceso de Evaluación y del Perfil de Egreso</a>
+    <a *ngIf="isModEje()" class="navbar-brand color-upeu-letras ml-3" style="font-size: 15px;"> |&nbsp;&nbsp;Ejecución del Proceso de Evaluación y del Perfil de Egreso</a>
+    <a *ngIf="isModInf()" class="navbar-brand color-upeu-letras ml-3" style="font-size: 15px;"> |&nbsp;&nbsp;Informes del Proceso de Evaluación y del Perfil de Egreso</a>
+    <a *ngIf="isModSeg()" class="navbar-brand color-upeu-letras ml-3" style="font-size: 15px;"> |&nbsp;&nbsp;Gestión de Usuarios y Privilegios</a>
+</nav>
   

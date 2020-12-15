@@ -46,8 +46,9 @@ export class SidebarComponent implements OnInit {
   }
 
   isModConf():boolean{
-    if(this.router.url==='/posts' || this.router.url==='/moduloconfig/linea/listar'
-    || this.router.url==='/moduloconfig/plan/listar'){
+    if(this.router.url==='/moduloconfig' || this.router.url==='/moduloconfig/lineas'
+    || this.router.url==='/moduloconfig/planes' || this.router.url==='/moduloconfig/planlineas'
+    || this.router.url==='/moduloconfig/competenciasniveles' || this.router.url==='/moduloconfig/semestres'){
       return true;
     }else{
       return false;
@@ -60,4 +61,34 @@ export class SidebarComponent implements OnInit {
       return false;
     }
   }
+  isModPlan():boolean{
+    if(this.router.url==='/moduloplan'){
+      return true;
+    }else{
+      return false;
+    }
+
+  }
+  isModEje():boolean{
+    if(this.router.url==='/moduloeje'){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  isModInf():boolean{
+    if(this.router.url==='/moduloinf'){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  isModSeg():boolean{
+    if(this.router.url==='/moduloseg'){
+      return true;
+    }else{
+      return false;
+    }
+  }
 }
+
