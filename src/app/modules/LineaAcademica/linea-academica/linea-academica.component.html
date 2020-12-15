@@ -37,13 +37,13 @@
           <td> {{linea.NOMBRE}} </td>
           <td> {{linea.ESTADO}} </td>
           <td>
-              <button class="btn" (click)="cargarRol(linea.ID_LINEA)">
-                  <i class="fa fa-pencil" aria-hidden="true"></i>
+              <button class="btn btn-success" (click)="cargarRol(linea.ID_LINEA)">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
               </button>
           </td>
           <td>
-              <button class="btn" (click)="delLinea(linea.ID_LINEA)">
-                  <i class="fa fa-trash" aria-hidden="true"></i>
+              <button class="btn btn-danger" (click)="delLinea(linea.ID_LINEA)">
+                  <i class="fa fa-trash-o" aria-hidden="true"></i>
               </button>
           </td>
         </tr>

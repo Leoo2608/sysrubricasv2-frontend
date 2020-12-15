@@ -103,6 +103,7 @@ export class CompetenciaCursoComponent implements OnInit {
   listadoTabla(value){
     this.filtrado="No";
     this.idcomp_n = value;
+    console.log('idcomp_n: '+this.idcomp_n)
     this.compCur.getCompetenciaCursos(value).subscribe(
       (data)=>{
         this.competenciasCursos = data['CURSOR_CC'];
@@ -149,12 +150,14 @@ export class CompetenciaCursoComponent implements OnInit {
   idcursoplan:any; //add
   obtenerIdcursoplan(value){
     this.idcursoplan = value;
+    console.log('id_curso_plan: '+this.idcursoplan)
   }
   
   compcursoModel: CompetenciaCurso= new CompetenciaCurso();
   create(){
     this.compcursoModel.id_curso_plan = this.idcursoplan;
     this.compcursoModel.idcomp_n = this.idcomp_n;
+    console.log(this.compcursoModel)
     this.compCur.addCompetenciaCurso(this.compcursoModel).subscribe(
       response=>{
         Swal.fire('Nuevo Curso - Competencia', `El curso se ha registrado a la competencia y nivel`, "success")

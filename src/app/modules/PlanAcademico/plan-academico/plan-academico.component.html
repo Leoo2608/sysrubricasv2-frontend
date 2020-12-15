@@ -54,13 +54,13 @@
             <td> {{plan.ANIO_TERMINO}} </td>
             <td hidden> {{plan.ESTADO}} </td>
             <td>
-                <button class="btn" (click)="cargarPlan(plan.IDPLAN)">
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                <button class="btn btn-success" (click)="cargarPlan(plan.IDPLAN)">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 </button>
             </td>
             <td>
-                <button class="btn" (click)="delPlan(plan.IDPLAN)">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
+                <button class="btn btn-danger" (click)="delPlan(plan.IDPLAN)">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
                 </button>
             </td>
           </tr>

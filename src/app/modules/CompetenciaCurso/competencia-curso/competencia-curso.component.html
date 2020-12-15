@@ -67,6 +67,7 @@
             <div *ngIf="showButtonAdd=='Si'" class="form-group">
               <label> Cursos del Plan </label>
               <select (change)="obtenerIdcursoplan($event.target.value)" class="form-control">
+                <option selected>Elige...</option>
                 <option *ngFor="let c of cursos" [value]="c.ID_CURSO_PLAN"> {{c.NOMBRE}} </option>
               </select>
             </div>
@@ -93,13 +94,13 @@
                       <td hidden> {{x.COMPETENCIA}} </td>
                       <td hidden> {{x.NIVEL}} </td>
                       <td>
-                          <button class="btn">
-                              <i class="fa fa-pencil" aria-hidden="true"></i>
+                          <button class="btn btn-success">
+                              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                           </button>
                       </td>
                       <td>
-                          <button class="btn" (click)="delete(x.IDCOMP_C)">
-                              <i class="fa fa-trash" aria-hidden="true"></i>
+                          <button class="btn btn-danger" (click)="delete(x.IDCOMP_C)">
+                              <i class="fa fa-trash-o" aria-hidden="true"></i>
                           </button>
                       </td>
                     </tr>
