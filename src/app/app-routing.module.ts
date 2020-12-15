@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DefaultComponent } from './layouts/default/default.component';
+import { CompetenciaComponent } from './modules/Competencia/competencia/competencia.component';
 import { CompetenciaCursoComponent } from './modules/CompetenciaCurso/competencia-curso/competencia-curso.component';
 import { CompetenciaNivelComponent } from './modules/CompetenciaNivel/competencia-nivel/competencia-nivel.component';
 import { HomeComponent } from './modules/home/home.component';
@@ -12,13 +13,14 @@ import { ModuloPlanComponent } from './modules/Modulos/modulo-plan/modulo-plan.c
 import { ModuloSegComponent } from './modules/Modulos/modulo-seg/modulo-seg.component';
 import { PlanAcademicoComponent } from './modules/PlanAcademico/plan-academico/plan-academico.component';
 import { PlanLineaComponent } from './modules/PlanLinea/plan-linea/plan-linea.component';
+import { SemestreComponent } from './modules/Semestre/semestre/semestre.component';
 
 /*
 Agregar en children cada path por cada componente (CRUD)
 */
 const routes: Routes = [{
   path: '',
-  component:DefaultComponent,
+  component: DefaultComponent,
   children: [{
     path: '',
     component: HomeComponent
@@ -42,6 +44,10 @@ const routes: Routes = [{
     path: 'moduloconfig/lineas',
     component: LineaAcademicaComponent
   }, {
+    path: 'moduloconfig/semestres',
+    component: SemestreComponent
+
+  }, {
     path: 'moduloconfig/planes',
     component: PlanAcademicoComponent
   }, {
@@ -51,13 +57,16 @@ const routes: Routes = [{
     path: 'moduloconfig/competenciasniveles',
     component: CompetenciaNivelComponent
   }, {
+    path: 'moduloconfig/competencia',
+    component: CompetenciaComponent
+  },{
     path: 'moduloconfig/competenciascursos',
     component: CompetenciaCursoComponent
   }]
 }];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

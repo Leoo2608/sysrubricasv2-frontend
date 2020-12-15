@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { ModuloEjeComponent } from './modulo-eje.component';
+import { SemestreComponent } from './semestre.component';
 
-describe('ModuloEjeComponent', () => {
-  let component: ModuloEjeComponent;
-  let fixture: ComponentFixture<ModuloEjeComponent>;
+describe('SemestreComponent', () => {
+  let component: SemestreComponent;
+  let fixture: ComponentFixture<SemestreComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ModuloEjeComponent ]
+      declarations: [ SemestreComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModuloEjeComponent);
+    fixture = TestBed.createComponent(SemestreComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

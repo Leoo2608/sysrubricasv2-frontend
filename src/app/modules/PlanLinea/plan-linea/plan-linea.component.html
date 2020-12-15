@@ -21,7 +21,7 @@
             <option *ngFor="let esc of escuelas" [value]="esc.ID"> {{esc.ESCUELA}} </option>
           </select>
         </div>
-      </div>
+    </div>
       <div class="form-row">
           <div class="form-group col-md-6">
           <label for="inputState">Planes Académicos</label>
@@ -29,7 +29,7 @@
             <option >Elegir...</option>
             <option *ngFor="let pl of planes" [value]="pl.IDPLAN">{{pl.NOMBRE}}</option>
           </select>
-       </div>
+          </div>
           <div class="mt-3 ml-3">
           <button id="filtro" type="submit" class="btn color-filtro mt-3" (click)="filt()">Activar Filtros</button>
       </div>
