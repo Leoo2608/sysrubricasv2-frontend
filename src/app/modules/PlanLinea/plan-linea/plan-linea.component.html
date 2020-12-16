@@ -61,7 +61,6 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
               </tr>
             </thead>
@@ -70,11 +69,6 @@
                 <td> {{i+1}} </td>
                 <td hidden> {{x.IDPLAN_L}} </td>
                 <td> {{x.NOMBRE}} </td>
-                <td>
-                    <button class="btn btn-success" (click)="cargarPlanLinea(x.IDPLAN_L)">
-                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    </button>
-                </td>
                 <td>
                     <button class="btn btn-danger" (click)="delPlanLinea(x.IDPLAN_L)">
                         <i class="fa fa-trash-o" aria-hidden="true"></i>

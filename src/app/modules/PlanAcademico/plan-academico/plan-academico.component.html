@@ -1,21 +1,21 @@
 <div class="container adjust">
     <div class="form-row">
       <div class="form-group col-md-3">
-        <label for="inputState">Campus</label>
+        <label  style="font-weight: bold;" for="inputState">Campus</label>
         <select (change)="traerFacultad($event.target.value)" id="inputState" class="form-control" required>
           <option value="" >Elegir...</option>
           <option  *ngFor="let cs of campus">{{cs.NOMBRE}}</option>
         </select>
       </div>
       <div class="form-group col-md-6">
-        <label for="inputState">Facultad</label>
+        <label style="font-weight: bold;" for="inputState">Facultad</label>
         <select (change)="traerEscuela($event.target.value)" id="inputState" class="form-control" required>
           <option selected>Elegir...</option>
           <option *ngFor="let fc of facultades" [value]="fc.ID"> {{fc.FACULTADES}} </option>
         </select>
       </div>
       <div class="form-group col-md-3">
-        <label for="inputState">E.P.</label>
+        <label style="font-weight: bold;" for="inputState">E.P.</label>
         <select (change)="listarPlanes($event.target.value)" id="inputState" class="form-control" required>
           <option selected>Elegir...</option>
           <option *ngFor="let esc of escuelas" [value]="esc.ID"> {{esc.ESCUELA}} </option>
