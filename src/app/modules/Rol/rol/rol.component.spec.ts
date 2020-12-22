@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LineaAcademicaComponent } from './linea-academica.component';
+import { RolComponent } from './rol.component';
 
-describe('LineaAcademicaComponent', () => {
-  let component: LineaAcademicaComponent;
-  let fixture: ComponentFixture<LineaAcademicaComponent>;
+describe('RolComponent', () => {
+  let component: RolComponent;
+  let fixture: ComponentFixture<RolComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LineaAcademicaComponent ]
+      declarations: [ RolComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LineaAcademicaComponent);
+    fixture = TestBed.createComponent(RolComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

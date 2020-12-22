@@ -57,16 +57,30 @@ export class LineaAcademicaComponent implements OnInit {
         )
     }
   /* Crear */
+  l
   public create():void{
-    this.lineaService.addLineaAcademica(this.lineaModel).subscribe(
-      response=>{
-        Swal.fire('Nueva Línea', `La Línea ${this.lineaModel.nombre}  ha sido creado con exito`, "success")
-        console.log(this.lineaModel);
-        console.log(response);
-      }
-    )
-    this.listarLinea(); // actualiza el listado
-    this.limpiar();
+
+    if(this.lineaModel.nombre == null || this.lineaModel.nombre == " "){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Ingrese Datos',
+        footer: '<a href>Why do I have this issue?</a>'
+      })
+    }else{
+      this.lineaService.addLineaAcademica(this.lineaModel).subscribe(
+        response=>{
+          Swal.fire('Nueva Línea', `La Línea ${this.lineaModel.nombre}  ha sido creado con exito`, "success")
+          console.log(this.lineaModel);
+          console.log(response);
+          this.listarLinea(); // actualiza el listado
+        }
+      )
+    
+      this.limpiar();
+      
+    }
+  
   }
   /*Actualizar*/
   mensaje = "No"

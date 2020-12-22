@@ -5,6 +5,9 @@ import { CompetenciaComponent } from './modules/Competencia/competencia/competen
 import { CompetenciaCursoComponent } from './modules/CompetenciaCurso/competencia-curso/competencia-curso.component';
 import { CompetenciaNivelComponent } from './modules/CompetenciaNivel/competencia-nivel/competencia-nivel.component';
 import { HomeComponent } from './modules/home/home.component';
+import { ModuloComponent } from './modules/Modulo/modulo/modulo.component';
+import { PersonaComponent } from './modules/Persona/persona/persona.component';
+import { RolComponent } from './modules/Rol/rol/rol.component';
 import { LineaAcademicaComponent } from './modules/LineaAcademica/linea-academica/linea-academica.component';
 import { ModuloConfigComponent } from './modules/Modulos/modulo-config/modulo-config.component';
 import { ModuloEjeComponent } from './modules/Modulos/modulo-eje/modulo-eje.component';
@@ -27,6 +30,15 @@ const routes: Routes = [{
   }, {
     path: 'moduloconfig',
     component: ModuloConfigComponent
+  }, {
+    path: 'moduloconfig/persona',
+    component: PersonaComponent
+  },{
+    path: 'moduloconfig/roles',
+    component: RolComponent
+  }, {
+    path: 'moduloconfig/modulos',
+    component: ModuloComponent  
   }, {
     path: 'moduloplan',
     component: ModuloPlanComponent
@@ -64,7 +76,7 @@ const routes: Routes = [{
     component: CompetenciaCursoComponent
   }]
 }];
-
+  
 @NgModule({
   imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]

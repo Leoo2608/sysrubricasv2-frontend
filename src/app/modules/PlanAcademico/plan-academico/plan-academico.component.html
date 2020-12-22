@@ -1,21 +1,21 @@
 <div class="container adjust">
     <div class="form-row">
       <div class="form-group col-md-3">
-        <label for="inputState">Campus</label>
+        <label  style="font-weight: bold;" for="inputState">Campus</label>
         <select (change)="traerFacultad($event.target.value)" id="inputState" class="form-control" required>
           <option value="" >Elegir...</option>
           <option  *ngFor="let cs of campus">{{cs.NOMBRE}}</option>
         </select>
       </div>
       <div class="form-group col-md-6">
-        <label for="inputState">Facultad</label>
+        <label style="font-weight: bold;" for="inputState">Facultad</label>
         <select (change)="traerEscuela($event.target.value)" id="inputState" class="form-control" required>
           <option selected>Elegir...</option>
           <option *ngFor="let fc of facultades" [value]="fc.ID"> {{fc.FACULTADES}} </option>
         </select>
       </div>
       <div class="form-group col-md-3">
-        <label for="inputState">E.P.</label>
+        <label style="font-weight: bold;" for="inputState">E.P.</label>
         <select (change)="listarPlanes($event.target.value)" id="inputState" class="form-control" required>
           <option selected>Elegir...</option>
           <option *ngFor="let esc of escuelas" [value]="esc.ID"> {{esc.ESCUELA}} </option>
@@ -54,13 +54,13 @@
             <td> {{plan.ANIO_TERMINO}} </td>
             <td hidden> {{plan.ESTADO}} </td>
             <td>
-                <button class="btn" (click)="cargarPlan(plan.IDPLAN)">
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                <button class="btn btn-success" (click)="cargarPlan(plan.IDPLAN)">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                 </button>
             </td>
             <td>
-                <button class="btn" (click)="delPlan(plan.IDPLAN)">
-                    <i class="fa fa-trash" aria-hidden="true"></i>
+                <button class="btn btn-danger" (click)="delPlan(plan.IDPLAN)">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
                 </button>
             </td>
           </tr>

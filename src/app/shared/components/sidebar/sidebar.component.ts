@@ -23,7 +23,6 @@ export class SidebarComponent implements OnInit {
       $('.content-inner').toggleClass('active');
       $(document).trigger('sidebarChanged');
 
-      console.log('Estoy funcando')
 
       if ($(window).outerWidth() > 1183) {
           if ($('#toggle-btn').hasClass('active')) {
@@ -39,7 +38,6 @@ export class SidebarComponent implements OnInit {
       }
 
       if ($(window).outerWidth() < 1183) {
-        console.log('Entrando en segundo IF')
           $('.navbar-header .brand-small').show();
       }
   });
@@ -48,7 +46,9 @@ export class SidebarComponent implements OnInit {
   isModConf():boolean{
     if(this.router.url==='/moduloconfig' || this.router.url==='/moduloconfig/lineas'
     || this.router.url==='/moduloconfig/planes' || this.router.url==='/moduloconfig/planlineas'
-    || this.router.url==='/moduloconfig/competenciasniveles' || this.router.url==='/moduloconfig/semestres'){
+    || this.router.url==='/moduloconfig/competenciasniveles' || this.router.url==='/moduloconfig/semestres'
+    || this.router.url==='/moduloconfig/competencia' || this.router.url==='/moduloconfig/competenciascursos' ){
+    
       return true;
     }else{
       return false;
