@@ -30,6 +30,14 @@ export class SemestreComponent implements OnInit {
   }
     
    public create():void{
+     console.log(this.semestreModel.nombre)
+     if(this.semestreModel.nombre == null || this.semestreModel.nombre.trim() == ""){
+       Swal.fire({
+         icon: 'error',
+         title: 'Oops...',
+         text: 'Ingrese Datos',
+       })
+     } else{
       this.semestreService.addSemestre(this.semestreModel).subscribe(
         response=>{
           Swal.fire('Nuevo Semestre', `El semestre ${this.semestreModel.nombre}  ha sido creado con exito`, "success")
@@ -39,7 +47,7 @@ export class SemestreComponent implements OnInit {
       this.getSemestre(); // actualiza el listado
       this.limpiar();
     }
-
+  }
     delSemestre(num:number){
       console.log(num);
       Swal.fire({

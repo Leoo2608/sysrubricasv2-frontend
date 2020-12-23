@@ -95,8 +95,18 @@ export class CompetenciaComponent implements OnInit {
   }
 
   public create():void{
-    this.competenciaModel.idplan_l = this.idplan_l;
     this.competenciaModel.tipo = this.tipo;
+    if(this.competenciaModel.nombre == null || this.competenciaModel.nombre.trim() == ""
+    || this.competenciaModel.descripcion == null || this.competenciaModel.descripcion.trim() == ""
+    || this.competenciaModel.tipo == 'Seleccione el Tipo' || this.competenciaModel.tipo == null){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Llene todos los campos',
+      })
+    }else{
+    this.competenciaModel.idplan_l = this.idplan_l;
+   
     console.log(this.competenciaModel);
     this.competenciaService.addCompetencia(this.competenciaModel).subscribe(
       response=>{
@@ -106,7 +116,7 @@ export class CompetenciaComponent implements OnInit {
     )
     this.getCompetencia(this.idplan_l); // actualiza el listado
     this.limpiar();
-
+  }
   }
 
   mostrarDesc(num:any){
