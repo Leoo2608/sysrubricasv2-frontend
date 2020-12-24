@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
-
+import { Usuario } from 'src/app/modules/login/login/models/Usuario';
+import { AuthService } from 'src/app/modules/login/login/services/auth.service';
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -9,9 +11,22 @@ import * as $ from 'jquery';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router, public authService:AuthService) { }
+  menus : object[]=null;
+  user:any;
+  
+
 
   ngOnInit(): void {
+    this.user= JSON.parse(sessionStorage.getItem('usuario')); 
+    console.log(this.user);
+    this.isLider();
+
+
+
+
+
+
     // ------------------------------------------------------- //
     // Sidebar Functionality
     // ------------------------------------------------------ //
@@ -48,7 +63,10 @@ export class SidebarComponent implements OnInit {
   isModConf():boolean{
     if(this.router.url==='/moduloconfig' || this.router.url==='/moduloconfig/lineas'
     || this.router.url==='/moduloconfig/planes' || this.router.url==='/moduloconfig/planlineas'
-    || this.router.url==='/moduloconfig/competenciasniveles' || this.router.url==='/moduloconfig/semestres'){
+    || this.router.url==='/moduloconfig/competenciasniveles' || this.router.url==='/moduloconfig/semestres'
+    || this.router.url==='/moduloconfig/competencia' || this.router.url==='/moduloconfig/competenciascursos'
+    || this.router.url==='/tipo' || this.router.url==='/unidad' || this.router.url === '/moduloconfig/persona' 
+    || this.router.url==='/moduloconfig/persona'  || this.router.url==='/moduloconfig/roles'  || this.router.url==='/moduloconfig/modulos'){
       return true;
     }else{
       return false;
@@ -62,7 +80,7 @@ export class SidebarComponent implements OnInit {
     }
   }
   isModPlan():boolean{
-    if(this.router.url==='/moduloplan'){
+    if(this.router.url==='/moduloplan' || this.router.url === '/rubricas'){
       return true;
     }else{
       return false;
@@ -90,5 +108,23 @@ export class SidebarComponent implements OnInit {
       return false;
     }
   }
+  isLider() : boolean{
+    this.user= JSON.parse(sessionStorage.getItem('usuario')); 
+    
+    if(this.user.roles[0] == "Lider"){
+      console.log("es Lider");
+      return true
+    }else{
+      console.log("es papanoel")
+      return false;
+    }
+
+
+
+  }
+
+
+
+
 }
 

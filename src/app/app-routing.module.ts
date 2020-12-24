@@ -17,6 +17,17 @@ import { ModuloSegComponent } from './modules/Modulos/modulo-seg/modulo-seg.comp
 import { PlanAcademicoComponent } from './modules/PlanAcademico/plan-academico/plan-academico.component';
 import { PlanLineaComponent } from './modules/PlanLinea/plan-linea/plan-linea.component';
 import { SemestreComponent } from './modules/Semestre/semestre/semestre.component';
+import { LoginComponent } from './modules/login/login/login.component';
+import { TipoAcademicaComponent } from './modules/tipo-academica/tipo-academica/tipo-academica.component';
+import { UnidadAcademicaComponent } from './modules/unidad-academica/unidad-academica/unidad-academica.component';
+import { RubricasComponent } from './modules/rubricas/rubricas/vista-principal/rubricas.component';
+import { AddRubricasComponent } from './modules/rubricas/rubricas/add-rubricas/add-rubricas/add-rubricas.component';
+import { VistaAdministrativaComponent } from './modules/rubricas/rubricas/vista-administrativa/vista-administrativa/vista-administrativa.component';
+import { CriteriosComponent } from './modules/rubricas/rubricas/criterios/criterios/criterios.component';
+import { NivelesLogroComponent } from './modules/rubricas/rubricas/niveles-logro/niveles-logro/niveles-logro.component';
+import { AuthrutasGuard } from './modules/login/login/services/guards/authrutas.guard';
+import { RoleGuard } from './modules/login/login/services/guards/role.guard';
+import { DashBoardLeaderComponent } from './modules/dash-board-leader/dash-board-leader.component';
 
 /*
 Agregar en children cada path por cada componente (CRUD)
@@ -26,8 +37,19 @@ const routes: Routes = [{
   component: DefaultComponent,
   children: [{
     path: '',
-    component: HomeComponent
-  }, {
+    component: HomeComponent , canActivate : [AuthrutasGuard, RoleGuard], data : {role :  'Administrador'}
+  }, 
+  {
+    path: 'dashl',
+    component: DashBoardLeaderComponent , canActivate : [AuthrutasGuard, RoleGuard] , data : {role : 'Lider'}
+
+
+
+  },
+  
+  
+  
+  {
     path: 'moduloconfig',
     component: ModuloConfigComponent
   }, {
@@ -40,7 +62,7 @@ const routes: Routes = [{
     path: 'moduloconfig/modulos',
     component: ModuloComponent  
   }, {
-    path: 'moduloplan',
+    path: 'dashl/moduloplan',
     component: ModuloPlanComponent
   }, {
     path: 'moduloeje',
@@ -74,7 +96,45 @@ const routes: Routes = [{
   },{
     path: 'moduloconfig/competenciascursos',
     component: CompetenciaCursoComponent
-  }]
+  },
+  {
+    path : 'login', component : LoginComponent
+  },
+  {
+    path : 'tipo',
+    component : TipoAcademicaComponent , canActivate : [AuthrutasGuard, RoleGuard], data : {role :  'Administrador'}
+  },
+  {
+    path : 'unidad',
+    component : UnidadAcademicaComponent
+  },
+  {
+    path : 'rubricas',
+    component : RubricasComponent  , canActivate : [AuthrutasGuard, RoleGuard] , data : {role : 'Lider'}
+  },
+  {
+    path : 'rubricas/:id',
+    component : AddRubricasComponent  , canActivate : [AuthrutasGuard, RoleGuard] , data : {role : 'Lider'}
+
+  },
+  {
+    path: 'rubricas/vista/admin/:id1',
+    component : VistaAdministrativaComponent  , canActivate : [AuthrutasGuard, RoleGuard] , data : {role : 'Lider'}
+
+  },
+  {
+    path : 'rubricas/indicador/:id',
+    component : CriteriosComponent  , canActivate : [AuthrutasGuard, RoleGuard] , data : {role : 'Lider'}
+  },
+  {
+    path : 'rubricas/indicador/nivellogro/:id',
+    component : NivelesLogroComponent  , canActivate : [AuthrutasGuard, RoleGuard] , data : {role : 'Lider'}
+  }
+
+
+
+
+]
 }];
   
 @NgModule({

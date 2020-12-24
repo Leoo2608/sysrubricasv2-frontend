@@ -1,21 +1,21 @@
 <div class="container adjust">
         <div class="form-row">
             <div class="form-group col-md-3">
-              <label for="inputState">Campus</label>
+              <label for="inputState" style="font-weight: bold;">Campus</label>
               <select id="campus" (change)="traerFacultad($event.target.value)" id="inputState" class="form-control" required>
                 <option value="" >Elegir...</option>
                 <option  *ngFor="let cs of campus">{{cs.NOMBRE}}</option>
               </select>
             </div>
             <div class="form-group col-md-6">
-              <label for="inputState">Facultad</label>
+              <label for="inputState" style="font-weight: bold;">Facultad</label>
               <select id="fac" (change)="traerEscuela($event.target.value)" id="inputState" class="form-control" required>
                 <option selected>Elegir...</option>
                 <option *ngFor="let fc of facultades" [value]="fc.ID"> {{fc.FACULTADES}} </option>
               </select>
             </div>
             <div class="form-group col-md-3">
-              <label for="inputState">E.P.</label>
+              <label for="inputState" style="font-weight: bold;">E.P.</label>
               <select id="ep" (change)="traerPlan($event.target.value)" id="inputState" class="form-control" required>
                 <option selected>Elegir...</option>
                 <option *ngFor="let esc of escuelas" [value]="esc.ID"> {{esc.ESCUELA}} </option>
@@ -24,28 +24,28 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputState">Planes Académicos</label>
+                <label for="inputState" style="font-weight: bold;">Planes Académicos</label>
                 <select id="plan" (change)="traerLinea($event.target.value)" class="form-control">
                     <option >Elegir...</option>
                     <option *ngFor="let pl of planes" [value]="pl.IDPLAN">{{pl.NOMBRE}}</option>
                 </select>
             </div>
             <div class="form-group col-md-3">
-                <label for="inputState">Líneas Académicas</label>
+                <label for="inputState" style="font-weight: bold;">Líneas Académicas</label>
                 <select id="lin" (change)="traerCompetencia($event.target.value)" class="form-control" >
                     <option >Elegir...</option>
                     <option *ngFor="let li of lineas" [value]="li.IDPLAN_L">{{li.NOMBRE}}</option>
                 </select>
             </div>
             <div class="form-group col-md-3">
-              <label for="inputState">Competencias</label>
+              <label for="inputState" style="font-weight: bold;">Competencias</label>
               <select id="comp" (change)="listarNivelesCompetencias($event.target.value)" class="form-control" >
                   <option >Elegir...</option>
                   <option *ngFor="let cmp of comps" [value]="cmp.IDCOMP">{{cmp.NOMBRE}}</option>
               </select>
           </div>
           <div class="form-group col-md-3">
-            <label for="inputState">Niveles</label>
+            <label for="inputState" style="font-weight: bold;">Niveles</label>
             <select id="niv" (change)="listadoTabla($event.target.value)" class="form-control" >
                 <option >Elegir...</option>
                 <option *ngFor="let nv of niveles" [value]="nv.IDCOMP_N">{{nv.NIVEL}}</option>

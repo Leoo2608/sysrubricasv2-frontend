@@ -4,7 +4,8 @@
           <div class="form-group">
             <label *ngIf="showButtonAdd=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Ingresar Registro</label>
             <label *ngIf="showButtonsUpdate=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Actualizar Registro</label> <br>
-            <label for="exampleInputEmail1">Nombre</label>
+            <label for="exampleInputEmail1" style="font-weight: bold;"
+            >Nombre</label>
             <input hidden [(ngModel)]="lineaModel.id_linea" name="id_linea" class="form-control">
             <input id="nombre" [(ngModel)]="lineaModel.nombre" name="nombre" class="form-control"  placeholder="Nombre de Línea">
             <small id="emailHelp" class="form-text text-muted">Ejemplo: Gestión de TI.</small>
