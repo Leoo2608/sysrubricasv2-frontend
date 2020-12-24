@@ -32,6 +32,14 @@ export class RolComponent implements OnInit {
   }
 
   agregarRol():void{
+    console.log(this.rolModel.nombre)
+    if(this.rolModel.nombre==null|| this.rolModel.nombre.trim() ==""){
+      Swal.fire({
+        icon: 'error',
+        title :'Oops...',
+        text: 'Ingrese Datos',
+      })
+    }else{
     this.rolService.addRol(this.rolModel).subscribe(
       response=>{
         Swal.fire('Nuevo Rol', `El Rol ${this.rolModel.nombre}  ha sido creado con exito`, "success")
@@ -39,6 +47,7 @@ export class RolComponent implements OnInit {
     )
     this.listarRoles();
     this.limpiar();
+  }
   }
 
   eliminarRol(id:number):void{

@@ -1,22 +1,22 @@
 <div class="container adjust">
         <div class="form-row">
-            <div class="form-group col-md-3">
-              <label for="inputState" style="font-weight: bold;">Campus</label>
-              <select id="campus" (change)="traerFacultad($event.target.value)" id="inputState" class="form-control" required>
+            <div class="form-group col-md-2">
+              <label for="inputState">Campus</label>
+              <select id="scampus" (change)="traerFacultad($event.target.value)" class="form-control">
                 <option value="" >Elegir...</option>
                 <option  *ngFor="let cs of campus">{{cs.NOMBRE}}</option>
               </select>
             </div>
             <div class="form-group col-md-6">
-              <label for="inputState" style="font-weight: bold;">Facultad</label>
-              <select id="fac" (change)="traerEscuela($event.target.value)" id="inputState" class="form-control" required>
+              <label for="inputState">Facultad</label>
+              <select id="sfac" (change)="traerEscuela($event.target.value)" class="form-control">
                 <option selected>Elegir...</option>
                 <option *ngFor="let fc of facultades" [value]="fc.ID"> {{fc.FACULTADES}} </option>
               </select>
             </div>
             <div class="form-group col-md-3">
-              <label for="inputState" style="font-weight: bold;">E.P.</label>
-              <select id="ep" (change)="traerPlan($event.target.value)" id="inputState" class="form-control" required>
+              <label for="inputState">E.P.</label>
+              <select id="sesc" (change)="traerPlan($event.target.value)" class="form-control">
                 <option selected>Elegir...</option>
                 <option *ngFor="let esc of escuelas" [value]="esc.ID"> {{esc.ESCUELA}} </option>
               </select>
@@ -24,22 +24,22 @@
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="inputState" style="font-weight: bold;">Planes Académicos</label>
-                <select id="plan" (change)="traerLinea($event.target.value)" class="form-control">
+                <label for="inputState">Planes Académicos</label>
+                <select id="splan"  (change)="traerLinea($event.target.value)" class="form-control">
                     <option >Elegir...</option>
                     <option *ngFor="let pl of planes" [value]="pl.IDPLAN">{{pl.NOMBRE}}</option>
                 </select>
             </div>
             <div class="form-group col-md-3">
-                <label for="inputState" style="font-weight: bold;">Líneas Académicas</label>
-                <select id="lin" (change)="traerCompetencia($event.target.value)" class="form-control" >
+                <label for="inputState">Líneas Académicas</label>
+                <select id="slinea" (change)="traerCompetencia($event.target.value)" class="form-control" >
                     <option >Elegir...</option>
                     <option *ngFor="let li of lineas" [value]="li.IDPLAN_L">{{li.NOMBRE}}</option>
                 </select>
             </div>
-            <div class="form-group col-md-3">
-              <label for="inputState" style="font-weight: bold;">Competencias</label>
-              <select id="comp" (change)="listarNivelesCompetencias($event.target.value)" class="form-control" >
+            <div class="form-group col-md-2">
+              <label for="inputState">Competencias</label>
+              <select id="scomp" (change)="listarNivelesCompetencias($event.target.value)" class="form-control" >
                   <option >Elegir...</option>
                   <option *ngFor="let cmp of comps" [value]="cmp.IDCOMP">{{cmp.NOMBRE}}</option>
               </select>
@@ -56,17 +56,16 @@
             </div>
       </div>
 
-    <section *ngIf="filtrado=='Si'">
-      <div class="box1 mt-3">
-        <p class="color-upeu-letras">Cursos Alineados Con la Competencia: {{nomcomp}} en el {{nomnivel}} </p> 
-      </div>
-      <section style="display: flex;" class="mb-5 mt-5 mr-5">
+    <section *ngIf="filtrado">
+      <div class="box1 mt-3"></div>
+      <section style="display: flex;" class="mb-5 mt-3 mr-5">
           <div class="col-md-6">
             <label *ngIf="showButtonAdd=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Ingresar Registro</label>
             <label *ngIf="showButtonsUpdate=='Si'" class="color-upeu-letras mb-3" style="font-size:20px;">Actualizar Registro</label> <br>
             <div *ngIf="showButtonAdd=='Si'" class="form-group">
               <label> Cursos del Plan </label>
               <select (change)="obtenerIdcursoplan($event.target.value)" class="form-control">
+                <option selected>Elige...</option>
                 <option *ngFor="let c of cursos" [value]="c.ID_CURSO_PLAN"> {{c.NOMBRE}} </option>
               </select>
             </div>
@@ -93,13 +92,13 @@
                       <td hidden> {{x.COMPETENCIA}} </td>
                       <td hidden> {{x.NIVEL}} </td>
                       <td>
-                          <button class="btn">
-                              <i class="fa fa-pencil" aria-hidden="true"></i>
+                          <button class="btn btn-success">
+                              <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                           </button>
                       </td>
                       <td>
-                          <button class="btn" (click)="delete(x.IDCOMP_C)">
-                              <i class="fa fa-trash" aria-hidden="true"></i>
+                          <button class="btn btn-danger" (click)="delete(x.IDCOMP_C)">
+                              <i class="fa fa-trash-o" aria-hidden="true"></i>
                           </button>
                       </td>
                     </tr>

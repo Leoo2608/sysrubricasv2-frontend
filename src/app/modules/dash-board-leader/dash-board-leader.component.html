@@ -1,4 +1,4 @@
-<body class="content-inner"  style="width: 260%;">
+<body class="content-inner">
     <div class="container-fluid cont">
       <div class="card mt-3 mr-3 cardy" style="width: 18rem; " *ngFor="let menu of menus" >
         <svg width="6em" height="6em" viewBox="0 0 16 16" class="bi bi-gear-fill card-img-top pt-4" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -8,13 +8,8 @@
           <div class="card-body text-center" >
            <h5 class="card-title mt-2">{{menu.NOMACCESO}}</h5>
            <a [routerLink]= "menu.URL" class="btn color-upeu mt-4">Comenzar</a>
-        
+           
         </div>
       </div>
-   
-
-  
-  
-    </div>
-  </body>
-  
+  </div>
+</body>

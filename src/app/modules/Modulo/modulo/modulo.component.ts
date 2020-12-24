@@ -30,15 +30,24 @@ showButtonAdd = 'Si';
   }
 
   agregarModulo():void{
+    console.log(this.ModuloModel.nombremod)
+    if(this.ModuloModel.nombremod==null|| this.ModuloModel.nombremod.trim() ==""){
+      Swal.fire({
+        icon: 'error',
+        title :'Oops...',
+        text: 'Ingrese Datos',
+      })
+    }else{
     console.log(this.ModuloModel);
     this.ModuloService.addModulo(this.ModuloModel).subscribe(
       response=>{
         Swal.fire('Nueva Modulo', `El modulo ${this.ModuloModel.nombremod}  ha sido creado con exito`, "success")
-        this.limpiar();
+       
       }
     )
     this.listarmodulo();
-  
+    this.limpiar();
+    }
   }
 
 

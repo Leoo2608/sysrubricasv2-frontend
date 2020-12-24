@@ -4,6 +4,7 @@ import { CompetenciaCurso } from '../models/competencia-curso';
 import { CompetenciaCursoService } from '../services/competencia-curso.service';
 import * as $ from 'jquery';
 
+
 @Component({
   selector: 'app-competencia-curso',
   templateUrl: './competencia-curso.component.html',
@@ -15,7 +16,7 @@ export class CompetenciaCursoComponent implements OnInit {
 
   ngOnInit(): void {
     this.traerCampus();
-    $('#filtro').attr("disabled", true);
+    (document.getElementById('filtro') as HTMLInputElement).disabled = true; 
     this.getCursos(21);
   }
   /*---- Selectores ---- */ 
@@ -44,32 +45,32 @@ export class CompetenciaCursoComponent implements OnInit {
         this.facultades = filtered;
         console.log(this.facultades)
       })
-      this.filtrado = "No";
-      this.funcionFiltro("campus");
+      this.filtrado = false;
+      this.funcionFiltro("scampus");
   }
   traerEscuela(value){
     this.compCur.getEscuela(value).subscribe((data)=>{
         this.escuelas = data['CURSOR_U']
         console.log(this.escuelas)
       })
-      this.filtrado = "No";
-      this.funcionFiltro("fac");
+      this.filtrado = false;
+      this.funcionFiltro("sfac");
   }
   traerPlan(value){
     this.compCur.getPlanesAcademicosforSelector(value).subscribe((data)=>{
         this.planes = data['CURSOR_P']
         console.log(this.planes);
       })
-    this.filtrado = "No";
-    this.funcionFiltro("ep");
+    this.filtrado = false;
+    this.funcionFiltro("sesc");
   }
   traerLinea(value){
     this.compCur.getLineasxPlan(value).subscribe((data)=>{
         this.lineas = data['CURSOR_PL']
         console.log(this.lineas);
       })
-    this.filtrado = "No";
-    this.funcionFiltro("plan");
+    this.filtrado = false;
+    this.funcionFiltro("splan");
   }
   traerCompetencia(value){
     console.log(value)
@@ -77,23 +78,23 @@ export class CompetenciaCursoComponent implements OnInit {
         this.comps = data['CURSOR_C'];
         console.log(this.comps);
       })
-    this.filtrado = "No";
-    this.funcionFiltro("lin");
+    this.filtrado = false;
+    this.funcionFiltro("slinea");
   }
 
   nomcomp:any;
   listarNivelesCompetencias(value){
-    this.filtrado="No";
+    this.filtrado=false;
     this.compCur.getCompetenciaNivelesDin(value).subscribe((data)=>{
         this.niveles = data['CURSOR_CN']
         console.log(this.niveles);
       })
       this.nomcomp = $("#comp option:selected").text();
-      this.funcionFiltro("comp");
+      this.funcionFiltro("scomp");
   }
-  filtrado = "No";
+  filtrado: boolean = false;
   filt(){
-    this.filtrado = "Si";
+    this.filtrado = true;
   } 
 
   idcomp_n:number; //add
@@ -101,8 +102,9 @@ export class CompetenciaCursoComponent implements OnInit {
   nomnivel:any;
   competenciasCursos:any
   listadoTabla(value){
-    this.filtrado="No";
+    this.filtrado=false;
     this.idcomp_n = value;
+    console.log('idcomp_n: '+this.idcomp_n)
     this.compCur.getCompetenciaCursos(value).subscribe(
       (data)=>{
         this.competenciasCursos = data['CURSOR_CC'];
@@ -114,23 +116,71 @@ export class CompetenciaCursoComponent implements OnInit {
   }
   
 
-  funcionFiltro(nom:string){
-    this.nomnivel = $("#"+nom+" option:selected").text();
-    if(this.nomnivel != "Elegir..." && nom == "niv"){
-      $('#filtro').attr("disabled", false);
-    }else if(this.nomnivel == "Elegir..."){
-      $('#filtro').attr("disabled", true);
-      if(nom == "comp"){
+  valor:any;
+  funcionFiltro(valor:string){
+    this.valor = $("#"+valor+" option:selected").text();
+    if(this.valor != "Elegir..." && valor == "niv"){
+      (document.getElementById('filtro') as HTMLInputElement).disabled = false;
+    }else if(this.valor == "Elegir..."){
+      this.filtrado = false;
+      (document.getElementById('filtro') as HTMLInputElement).disabled = true;
+      if(valor == "sfac" || valor == "scampus" ){
+        $("#sesc").find('option').not(':first').remove();
+        $("#sesc").val($("#sesc option:first").val());
+        $("#splan").find('option').not(':first').remove();
+        $("#splan").val($("#splan option:first").val());
+        $("#slinea").find('option').not(':first').remove();
+        $("#slinea").val($("#slinea option:first").val());
+        $("#scomp").find('option').not(':first').remove();
+        $("#scomp").val($("#scomp option:first").val());
+      }else if(valor == "sesc"){
+        $("#splan").find('option').not(':first').remove();
+        $("#splan").val($("#splan option:first").val());
+        $("#slinea").find('option').not(':first').remove();
+        $("#slinea").val($("#slinea option:first").val());
+        $("#scomp").find('option').not(':first').remove();
+        $("#scomp").val($("#scomp option:first").val());
+      }else if(valor == "slinea"){
+        $("#scomp").find('option').not(':first').remove();
+        $("#scomp").val($("#scomp option:first").val());
+        $("#niv").find('option').not(':first').remove();
+        $("#niv").val($("#niv option:first").val());
+      }else if(valor == "splan"){
+        $("#slinea").find('option').not(':first').remove();
+        $("#slinea").val($("#slinea option:first").val());
+        $("#scomp").find('option').not(':first').remove();
+        $("#scomp").val($("#scomp option:first").val());
+      }else if(valor == "scomp"){
         $("#niv").find('option').not(':first').remove();
         $("#niv").val($("#niv option:first").val());
       }
-      /* Anidar mas ifs */
-    }else if(this.nomnivel!="Elegir..." && nom != "niv"){
-      if(nom == "comp"){
-        $('#filtro').attr("disabled", true);
-        
+    }else if(this.valor!="Elegir..." && valor != "scomp"){
+      (document.getElementById('filtro') as HTMLInputElement).disabled = true; 
+      if(valor == "sfac"){
+        $("#splan").find('option').not(':first').remove();
+        $("#splan").val($("#splan option:first").val());
+        $("#slinea").find('option').not(':first').remove();
+        $("#slinea").val($("#slinea option:first").val());
+        $("#scomp").find('option').not(':first').remove();
+        $("#scomp").val($("#scomp option:first").val());
+      }else if(valor == 'scampus'){
+        $("#sesc").find('option').not(':first').remove();
+        $("#sesc").val($("#sesc option:first").val());
+        $("#splan").find('option').not(':first').remove();
+        $("#splan").val($("#splan option:first").val());
+        $("#slinea").find('option').not(':first').remove();
+        $("#slinea").val($("#slinea option:first").val());
+        $("#scomp").find('option').not(':first').remove();
+        $("#scomp").val($("#scomp option:first").val());
+      }else if(valor == "splan"){
+        $("#scomp").find('option').not(':first').remove();
+        $("#scomp").val($("#scomp option:first").val());
+      }else if(valor == "sesc"){
+        $("#slinea").find('option').not(':first').remove();
+        $("#slinea").val($("#slinea option:first").val());
+        $("#scomp").find('option').not(':first').remove();
+        $("#scomp").val($("#scomp option:first").val());
       }
-      /* Anidar mas ifs */
     }
   }
 
@@ -149,18 +199,29 @@ export class CompetenciaCursoComponent implements OnInit {
   idcursoplan:any; //add
   obtenerIdcursoplan(value){
     this.idcursoplan = value;
+    console.log('id_curso_plan: '+this.idcursoplan)
   }
   
   compcursoModel: CompetenciaCurso= new CompetenciaCurso();
   create(){
     this.compcursoModel.id_curso_plan = this.idcursoplan;
     this.compcursoModel.idcomp_n = this.idcomp_n;
-    this.compCur.addCompetenciaCurso(this.compcursoModel).subscribe(
-      response=>{
-        Swal.fire('Nuevo Curso - Competencia', `El curso se ha registrado a la competencia y nivel`, "success")
-        console.log(response);
-        this.listadoTabla(this.idcomp_n);
+    if(this.compcursoModel.id_curso_plan == null || this.compcursoModel.id_curso_plan.toString() == "Elige..."){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Llene todos los campos...',
       })
+    }else{
+      console.log(this.compcursoModel)
+      this.compCur.addCompetenciaCurso(this.compcursoModel).subscribe(
+        response=>{
+          Swal.fire('Nuevo Curso - Competencia', `El curso se ha registrado a la competencia y nivel`, "success")
+          console.log(response);
+          this.listadoTabla(this.idcomp_n);
+        })
+    }
+   
    // actualiza el listado
   }
   delete(num:number){

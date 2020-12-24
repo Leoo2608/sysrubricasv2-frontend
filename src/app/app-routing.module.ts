@@ -36,30 +36,22 @@ const routes: Routes = [{
   path: '',
   component: DefaultComponent,
   children: [{
-    path: '',
-    component: HomeComponent , canActivate : [AuthrutasGuard, RoleGuard], data : {role :  'Administrador'}
-  }, 
-  {
-    path: 'dashl',
+    path: '', 
+    component: HomeComponent, canActivate : [AuthrutasGuard, RoleGuard] , data : {role : 'Comision Curriculo'}
+  }, {
+    path: 'dashl', 
     component: DashBoardLeaderComponent , canActivate : [AuthrutasGuard, RoleGuard] , data : {role : 'Lider'}
-
-
-
-  },
-  
-  
-  
-  {
+  }, {
     path: 'moduloconfig',
     component: ModuloConfigComponent
   }, {
-    path: 'moduloconfig/persona',
+    path: 'moduloseg/persona',
     component: PersonaComponent
-  },{
-    path: 'moduloconfig/roles',
+  }, {
+    path: 'moduloseg/roles',
     component: RolComponent
   }, {
-    path: 'moduloconfig/modulos',
+    path: 'moduloseg/modulos',
     component: ModuloComponent  
   }, {
     path: 'dashl/moduloplan',
@@ -74,66 +66,51 @@ const routes: Routes = [{
     path: 'moduloseg',
     component: ModuloSegComponent
   }, {
-    /* Agregar sus componentes a partir de aca */
     path: 'moduloconfig/lineas',
-    component: LineaAcademicaComponent
+    component: LineaAcademicaComponent, canActivate : [AuthrutasGuard, RoleGuard] , data : {role : 'Comision Curriculo'}
   }, {
     path: 'moduloconfig/semestres',
-    component: SemestreComponent
-
+    component: SemestreComponent, canActivate : [AuthrutasGuard, RoleGuard] , data : {role : 'Comision Curriculo'}
   }, {
     path: 'moduloconfig/planes',
-    component: PlanAcademicoComponent
+    component: PlanAcademicoComponent, canActivate : [AuthrutasGuard, RoleGuard] , data : {role : 'Comision Curriculo'}
   }, {
     path: 'moduloconfig/planlineas',
-    component: PlanLineaComponent
+    component: PlanLineaComponent, canActivate : [AuthrutasGuard, RoleGuard] , data : {role : 'Comision Curriculo'}
   }, {
     path: 'moduloconfig/competenciasniveles',
-    component: CompetenciaNivelComponent
+    component: CompetenciaNivelComponent, canActivate : [AuthrutasGuard, RoleGuard] , data : {role : 'Comision Curriculo'}
   }, {
     path: 'moduloconfig/competencia',
-    component: CompetenciaComponent
-  },{
+    component: CompetenciaComponent, canActivate : [AuthrutasGuard, RoleGuard] , data : {role : 'Comision Curriculo'}
+  }, {
     path: 'moduloconfig/competenciascursos',
-    component: CompetenciaCursoComponent
-  },
-  {
+    component: CompetenciaCursoComponent, canActivate : [AuthrutasGuard, RoleGuard] , data : {role : 'Comision Curriculo'}
+  }, {
     path : 'login', component : LoginComponent
-  },
-  {
+  }, {
     path : 'tipo',
     component : TipoAcademicaComponent , canActivate : [AuthrutasGuard, RoleGuard], data : {role :  'Administrador'}
-  },
-  {
+  }, {
     path : 'unidad',
-    component : UnidadAcademicaComponent
-  },
-  {
+    component : UnidadAcademicaComponent, canActivate : [AuthrutasGuard, RoleGuard], data : {role :  'Administrador'}
+  }, {
     path : 'rubricas',
     component : RubricasComponent  , canActivate : [AuthrutasGuard, RoleGuard] , data : {role : 'Lider'}
-  },
-  {
+  }, {
     path : 'rubricas/:id',
     component : AddRubricasComponent  , canActivate : [AuthrutasGuard, RoleGuard] , data : {role : 'Lider'}
 
-  },
-  {
+  }, {
     path: 'rubricas/vista/admin/:id1',
     component : VistaAdministrativaComponent  , canActivate : [AuthrutasGuard, RoleGuard] , data : {role : 'Lider'}
-
-  },
-  {
+  }, {
     path : 'rubricas/indicador/:id',
     component : CriteriosComponent  , canActivate : [AuthrutasGuard, RoleGuard] , data : {role : 'Lider'}
-  },
-  {
+  }, {
     path : 'rubricas/indicador/nivellogro/:id',
     component : NivelesLogroComponent  , canActivate : [AuthrutasGuard, RoleGuard] , data : {role : 'Lider'}
   }
-
-
-
-
 ]
 }];
   

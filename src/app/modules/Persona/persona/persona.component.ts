@@ -32,15 +32,27 @@ showButtonAdd = 'Si';
   }
 
   agregarPersona():void{
+    console.log(this.PersonaModel.nombres)
+    if(this.PersonaModel.nombres==null|| this.PersonaModel.nombres.trim() ==""
+    || this.PersonaModel.apepat==null || this.PersonaModel.apepat.trim()==""
+    || this.PersonaModel.apemat==null || this.PersonaModel.apemat.trim()==""
+    || this.PersonaModel.dni==null || this.PersonaModel.dni.trim()==""
+    || this.PersonaModel.telefono==null || this.PersonaModel.telefono.trim()==""){
+      Swal.fire({
+        icon: 'error',
+        title :'Oops...',
+        text: 'Ingrese todos los campos',
+      })
+    }else{
     console.log(this.PersonaModel);
     this.PersonaService.addPersona(this.PersonaModel).subscribe(
       response=>{
         Swal.fire('Nueva Persona', `La persona ${this.PersonaModel.nombres}  ha sido creado con exito`, "success")
-        this.limpiar();
       }
-    )
+       )
     this.listarpersona();
-  
+    this.limpiar();
+    }
   }
 
 

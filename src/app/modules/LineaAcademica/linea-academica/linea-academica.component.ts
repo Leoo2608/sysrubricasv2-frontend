@@ -1,33 +1,51 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LineaAcademica } from '../models/linea-academica';
 import { LineaAcademicaService } from '../services/linea-academica.service';
 import Swal from 'sweetalert2';
+import { Subject } from 'rxjs';
+
+
 @Component({
   selector: 'app-linea-academica',
   templateUrl: './linea-academica.component.html',
   styleUrls: ['./linea-academica.component.css']
 })
-export class LineaAcademicaComponent implements OnInit {
+export class LineaAcademicaComponent implements OnDestroy, OnInit {
+
+  
+  dtOptions: DataTables.Settings = {};
+  dtTrigger = new Subject();
   lineas: any;
- 
   lineaModel:LineaAcademica = new LineaAcademica();
-
-  constructor(private lineaService:LineaAcademicaService, private router:Router,private activatedRoute:ActivatedRoute) { }
-
+  constructor(private lineaService:LineaAcademicaService) { }
   ngOnInit(): void {
+  
+    this.dtOptions = {
+      destroy: true,
+      lengthMenu: [[5, 10, 25, 50], [5, 10, 25, 50]],
+      info: null,
+      responsive: true,
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      language: {
+        url: '//cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json'
+      }
+    };
     this.listarLinea(); 
   }
-  /*Listar*/
-  
+
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
+  }
+
   listarLinea():void{
     this.lineaService.getLineasAcademicas().subscribe(
       (data) =>{
        this.lineas = data['CURSOR_L'];
-       console.log(this.lineas);
+       this.dtTrigger.next();
       }) 
   }
-  /*Eliminar*/
+
   delLinea(num:number):void{    
         Swal.fire({
           title: '¿Desea eliminar este registro de forma permanente?',
@@ -50,15 +68,17 @@ export class LineaAcademicaComponent implements OnInit {
                 response=>{
                   console.log(response)
                   this.listarLinea();
-                }
-              )
+                  $('#datatable').DataTable().destroy().draw();
+                })
             }
           }
         )
     }
-  /* Crear */
+
+  l
   public create():void{
-    if(this.lineaModel.nombre == null || this.lineaModel.nombre == " "){
+    console.log(this.lineaModel.nombre)
+    if(this.lineaModel.nombre == null || this.lineaModel.nombre.trim() == ""){
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -68,63 +88,64 @@ export class LineaAcademicaComponent implements OnInit {
     }else{
       this.lineaService.addLineaAcademica(this.lineaModel).subscribe(
         response=>{
-          Swal.fire('Nueva Línea', 'La Línea ${this.lineaModel.nombre}  ha sido creado con exito, "success"')
-          console.log(this.lineaModel);
+          Swal.fire('Nueva Línea', `La Línea ${this.lineaModel.nombre}  ha sido creado con exito`, "success")
           console.log(response);
-          this.listarLinea(); // actualiza el listado
-        }
-      )
-
+          this.listarLinea();
+          $('#datatable').DataTable().destroy().draw();
+        })
       this.limpiar();
-
-    }
+    } 
   }
-  /*Actualizar*/
-  mensaje = "No"
+  
   public update():void{
-    Swal.fire({
-      title: '¿Desea actualizar el regsitro?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Confirmar',
-      cancelButtonText: 'Cancelar'
-    }).then(
-        (result)=>{
-          if(result.isConfirmed){
-            this.listarLinea(); // actualiza el listado
-            Swal.fire(
-              'Actualizado!',
-              'El registro ha sido actualizado.',
-              'success'
-              )
-              this.lineaService.updateLineaAcademica(this.lineaModel, this.lineaModel.id_linea).subscribe(
-                response=>{
-                  console.log(this.lineaModel);
-                  console.log(response);
-                }
-              ) 
-              this.cancelar();
-              this.mensaje = 'Si';            
-            }
-          }   
-    )
-    
+    if(this.lineaModel.nombre == null || this.lineaModel.nombre.trim() == ""){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Ingrese Datos',
+      })
+    }else{
+      Swal.fire({
+        title: '¿Desea actualizar el regsitro?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Confirmar',
+        cancelButtonText: 'Cancelar'
+      }).then(
+          (result)=>{
+            if(result.isConfirmed){  
+              Swal.fire(
+                'Actualizado!',
+                'El registro ha sido actualizado.',
+                'success'
+                )
+                this.lineaService.updateLineaAcademica(this.lineaModel, this.lineaModel.id_linea).subscribe(
+                  response=>{
+                    console.log(response);
+                    this.listarLinea();
+                    $('#datatable').DataTable().destroy().draw();
+                  }) 
+                this.cancelar();          
+              }
+            }   
+      )
+    }  
   }
   showButtonsUpdate = 'No';
   showButtonAdd = 'Si';
+
+  carga:any;
   cargarRol(num:number):void{
-        /* deshabilitar btn agregar, habilitar btn update y cancelar*/
-        this.showButtonsUpdate = 'Si';
-        this.showButtonAdd = 'No';
-        this.lineaService.getLineaAcademica(num).subscribe(
-          (data)=>{
-          this.lineas=data['CURSOR_L'] 
-          console.log(this.lineas[0].NOMBRE+' '+this.lineas[0].ID_LINEA);
-          this.lineaModel.nombre=this.lineas[0].NOMBRE;
-          this.lineaModel.id_linea=this.lineas[0].ID_LINEA;
-        })
+    this.showButtonsUpdate = 'Si';
+    this.showButtonAdd = 'No';
+    this.lineaService.getLineaAcademica(num).subscribe(
+      (data)=>{
+        this.carga=data['CURSOR_L'] 
+        this.lineaModel.nombre=this.carga[0].NOMBRE;
+        this.lineaModel.id_linea=this.carga[0].ID_LINEA;
+      })
   }
   cancelar(){
     this.showButtonsUpdate = 'No';

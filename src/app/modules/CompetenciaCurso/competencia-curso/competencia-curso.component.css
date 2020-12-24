@@ -33,7 +33,7 @@
     color: white;
 }
 .color-filtro{
-    background-color: #272525;
+    background-color: #000000;
     color: white;
 }
 .resize{
@@ -46,7 +46,16 @@
   width: 100%;
   padding-top: 20px;
 }
-.box1 p{
-    font-size: 20px;
-    font-weight: 400;
+#scampus{
+    min-width: 9em;
+    margin-right: 26em;
+}
+#sfac{
+    min-width: 11em;
+}
+#sesc{
+    min-width: 9em;
+}
+#filtro{
+    min-width: 8em;
 }

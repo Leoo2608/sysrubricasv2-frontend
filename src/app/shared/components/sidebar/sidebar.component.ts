@@ -38,7 +38,6 @@ export class SidebarComponent implements OnInit {
       $('.content-inner').toggleClass('active');
       $(document).trigger('sidebarChanged');
 
-      console.log('Estoy funcando')
 
       if ($(window).outerWidth() > 1183) {
           if ($('#toggle-btn').hasClass('active')) {
@@ -54,7 +53,6 @@ export class SidebarComponent implements OnInit {
       }
 
       if ($(window).outerWidth() < 1183) {
-        console.log('Entrando en segundo IF')
           $('.navbar-header .brand-small').show();
       }
   });
@@ -80,7 +78,7 @@ export class SidebarComponent implements OnInit {
     }
   }
   isModPlan():boolean{
-    if(this.router.url==='/moduloplan' || this.router.url === '/rubricas'){
+    if(this.router.url==='/dashl/moduloplan' || this.router.url === '/rubricas'){
       return true;
     }else{
       return false;
@@ -102,15 +100,15 @@ export class SidebarComponent implements OnInit {
     }
   }
   isModSeg():boolean{
-    if(this.router.url==='/moduloseg'){
+    if(this.router.url==='/moduloseg' || this.router.url==='/moduloseg/persona' || this.router.url==='/moduloseg/roles'
+    || this.router.url==='/moduloseg/modulos'){
       return true;
     }else{
       return false;
     }
   }
-  isLider() : boolean{
+  isLider():boolean{
     this.user= JSON.parse(sessionStorage.getItem('usuario')); 
-    
     if(this.user.roles[0] == "Lider"){
       console.log("es Lider");
       return true
@@ -118,9 +116,27 @@ export class SidebarComponent implements OnInit {
       console.log("es papanoel")
       return false;
     }
+  }
 
-
-
+  isComision():boolean{
+    this.user= JSON.parse(sessionStorage.getItem('usuario')); 
+    if(this.user.roles[0] == "Comision Curriculo"){
+      console.log("es Comision Curriculo");
+      return true
+    }else{
+      console.log("es papanoel")
+      return false;
+    }
+  }
+  isAdiminstrador():boolean{
+    this.user= JSON.parse(sessionStorage.getItem('usuario')); 
+    if(this.user.roles[0] == "Administrador"){
+      console.log("es Administrador");
+      return true
+    }else{
+      console.log("es papanoel")
+      return false;
+    }
   }
 
 

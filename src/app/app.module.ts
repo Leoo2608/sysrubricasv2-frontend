@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DefaultModule } from './layouts/default/default.module';
@@ -31,8 +30,7 @@ import { DashBoardLeaderComponent } from './modules/dash-board-leader/dash-board
 import { InterceptorService } from './modules/login/login/interceptores/interceptor.service';
 import { InterceptorErrorService } from './modules/login/login/interceptores/interceptorerror.service';
 import { AuthService } from './modules/login/login/services/auth.service';
-
-
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -65,7 +63,8 @@ import { AuthService } from './modules/login/login/services/auth.service';
     AppRoutingModule,
     DefaultModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DataTablesModule
   ],
   providers: [
     AuthService,{

@@ -10,7 +10,7 @@ export class SemestreService {
   selecteSemestre : Semestre;
   semestre : Semestre[];
   private httpHeaders = new HttpHeaders({'Conten-Type': 'application/json'});
-  private semestreUrl: string = 'http://localhost:9090/semestres';//endpoint
+  private semestreUrl: string = 'http://localhost:9090/semestre';//endpoint
 
   constructor(private http: HttpClient) {
     this.selecteSemestre = new Semestre();
