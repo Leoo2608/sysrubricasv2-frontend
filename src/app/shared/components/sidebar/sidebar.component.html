@@ -17,30 +17,28 @@
       <li *ngIf="isModConf()"><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i
             class="fa fa-bar-chart"></i>CRUDs</a>
         <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-          <li><a [routerLink]="['/']">Tipo Unidad Académica</a></li>
-          <li><a [routerLink]="['/']">Unidad Académica</a></li>
+          <li><a [routerLink]="['/moduloconfig']">Tipo Unidad Académica</a></li>
+          <li><a [routerLink]="['/moduloconfig']">Unidad Académica</a></li>
           <li><a [routerLink]="['/moduloconfig/planes']">Plan Académico</a></li>
           <li><a [routerLink]="['/moduloconfig/lineas']">Linea Académica</a></li>
           <li><a [routerLink]="['/moduloconfig/planlineas']">Linea - Plan</a></li>
           <li><a [routerLink]="['/moduloconfig/semestres']">Semestres</a></li>
-          <li><a [routerLink]="['/moduloconfig/persona']">Persona</a></li>
-          <li><a [routerLink]="['/moduloconfig/roles']">Rol</a></li>
-          <li><a [routerLink]="['/moduloconfig/modulos']">Modulo</a></li>
-          <li><a [routerLink]="['/']">Docentes</a></li>
-          <li><a [routerLink]="['/']">Niveles de Logro</a></li>
+          <li><a [routerLink]="['/moduloconfig']">Docentes</a></li>
+          <li><a [routerLink]="['/moduloconfig']">Niveles</a></li>
         </ul>
       </li>
       <li *ngIf="isModConf()"><a [routerLink]="['/moduloconfig/competencia']"> <i class=""></i>Competencias</a></li>
-      <li *ngIf="isModConf()"><a [routerLink]="['/moduloconfig/competenciasniveles']"> <i class=""></i>Niveles
-          Competencia</a></li>
-      <li *ngIf="isModConf()"><a [routerLink]="['/']"> <i class=""></i>Cursos - Plan</a></li>
+      <li *ngIf="isModConf()"><a [routerLink]="['/moduloconfig/competenciasniveles']"> <i class=""></i>Niveles Competencia</a></li>
+      <li *ngIf="isModConf()"><a [routerLink]="['/moduloconfig']"> <i class=""></i>Cursos - Plan</a></li>
       <li *ngIf="isModConf()"><a [routerLink]="['/moduloconfig/competenciascursos']"> <i class=""></i>Competencias - Cursos</a></li>
-      <li *ngIf="isModConf()"><a [routerLink]="['/']"> <i class=""></i>Estudiante - Plan</a></li>
-      <li *ngIf="isModConf()"><a [routerLink]="['/']"> <i class=""></i>Carga - Estudiante</a></li>
+      <li *ngIf="isModConf()"><a [routerLink]="['/moduloconfig']"> <i class=""></i>Estudiante - Plan</a></li>
+      <li *ngIf="isModConf()"><a [routerLink]="['/moduloconfig']"> <i class=""></i>Carga - Estudiante</a></li>
       <!--Opciones del Módulo Planificación-->
       <li *ngIf="isModPlan()"><a [routerLink]="['/']"> <i class=""></i>Expertos Externos</a></li>
       <!--Opciones del Módulo Seguridad-->
-      <li *ngIf="isModSeg()"><a [routerLink]="['/']"> <i class=""></i>Personas</a></li>
+      <li *ngIf="isModSeg()"><a [routerLink]="['/moduloseg/persona']">Personas</a></li>
+      <li  *ngIf="isModSeg()"><a [routerLink]="['/moduloseg/roles']">Rol</a></li>
+      <li  *ngIf="isModSeg()"><a [routerLink]="['/moduloseg/modulos']">Modulo</a></li>
       <li *ngIf="isHome()"><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i
             class="icon-interface-windows"></i>Not Available </a>
         <ul id="exampledropdownDropdown" class="collapse list-unstyled ">

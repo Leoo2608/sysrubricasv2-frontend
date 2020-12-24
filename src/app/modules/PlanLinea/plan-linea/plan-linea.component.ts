@@ -15,6 +15,7 @@ export class PlanLineaComponent implements OnInit {
   ngOnInit(): void {
     this.traerCampus();
     this.traerLineas();
+    (document.getElementById('filtro') as HTMLInputElement).disabled = true;
   }
   /*----Filtros */
   campus:any;
@@ -37,7 +38,8 @@ export class PlanLineaComponent implements OnInit {
         this.facultades = filtered;
         console.log(this.facultades)
       })
-      this.filtrado = "No";
+      this.filtrado = false;
+      this.funcionFiltro("scampus");
   }
   traerEscuela(value){
     this.planlineaService.getEscuela(value).subscribe(
@@ -45,7 +47,8 @@ export class PlanLineaComponent implements OnInit {
         this.escuelas = data['CURSOR_U']
         console.log(this.escuelas)
       })
-      this.filtrado = "No";
+      this.filtrado = false;
+      this.funcionFiltro("sfac");
   }
   traerPlan(value){
     this.planlineaService.getPlanesAcademicosforSelector(value).subscribe(
@@ -53,11 +56,12 @@ export class PlanLineaComponent implements OnInit {
         this.planes = data['CURSOR_P']
         console.log(this.planes);
       })
-    this.filtrado = "No";
+    this.filtrado = false;
+    this.funcionFiltro("sesc");
   }
-  filtrado = "No";
+  filtrado: boolean = false; 
   filt(){
-    this.filtrado = "Si";
+    this.filtrado = true;
   }
   /*Tabla de Listado Principal . Líneas por el Plan de selector */
   idplan=null;  /* Datos para el registro*/
@@ -72,6 +76,7 @@ export class PlanLineaComponent implements OnInit {
         console.log(this.listadoLinea);
       }
     )
+    this.funcionFiltro("splan");
   }
   showButtonAdd = "Si";
   showButtonsUpdate = "No";
@@ -100,22 +105,38 @@ export class PlanLineaComponent implements OnInit {
   create():void{
     this.planlineaModel.idplan = this.idplan;
     this.planlineaModel.idlinea = this.idlinea;
-    this.planlineaService.addPlanLinea(this.planlineaModel).subscribe(
-      response=>{
-        Swal.fire('Nueva Linea Asignada', `La linea ha sido registrada al Plan Elegido`, "success")
-        console.log(this.planlineaModel);
-        console.log(response);
+    if(this.planlineaModel.idlinea == null || this.planlineaModel.idlinea.toString() == "Elegir..."){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Eliga una opción',
       })
-    /*this.limpiar();*/
-    this.listarLineasxPlan(this.idplan);
+    }else{
+      this.planlineaService.addPlanLinea(this.planlineaModel).subscribe(
+        response=>{
+          Swal.fire('Nueva Linea Asignada', `La linea ha sido registrada al Plan Elegido`, "success")
+          console.log(response);
+          this.listarLineasxPlan(this.idplan);
+        },(err)=>{
+          console.log(err)
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'La línea parece ya estar asignada al Plan Académico...',
+          })
+        })
+      /*this.limpiar();*/
+      
+    }
+    
   }
   
   /* Delete Function */
   delPlanLinea(num:number){
     console.log(num)
     Swal.fire({
-      title: '¿Desea eliminar este registro de forma permanente?',
-      text: "No podras revertir esto!",
+      title: '¿Desea remover este registro?',
+      text: "Esta acción puede afectar a otros registros!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Confirmar',
@@ -145,5 +166,36 @@ export class PlanLineaComponent implements OnInit {
   cargarPlanLinea(id:number){ }
   update(){ }
   cancelar(){ }
+
+  valor:any;
+  funcionFiltro(valor:string){
+    this.valor = $("#"+valor+" option:selected").text();
+    if(this.valor != "Elegir..." && valor == "splan"){
+      (document.getElementById('filtro') as HTMLInputElement).disabled = false;
+    }else if(this.valor == "Elegir..."){
+      this.filtrado = false;
+      (document.getElementById('filtro') as HTMLInputElement).disabled = true;
+      if(valor == "sfac" || valor == "scampus" ){
+        $("#sesc").find('option').not(':first').remove();
+        $("#sesc").val($("#sesc option:first").val());
+        $("#splan").find('option').not(':first').remove();
+        $("#splan").val($("#splan option:first").val());
+      }else if(valor == "sesc"){
+        $("#splan").find('option').not(':first').remove();
+        $("#splan").val($("#splan option:first").val());
+      }
+    }else if(this.valor!="Elegir..." && valor != "splan"){
+      (document.getElementById('filtro') as HTMLInputElement).disabled = true; 
+      if(valor == "sfac"){
+        $("#splan").find('option').not(':first').remove();
+        $("#splan").val($("#splan option:first").val());
+      }else if(valor == 'scampus'){
+        $("#sesc").find('option').not(':first').remove();
+        $("#sesc").val($("#sesc option:first").val());
+        $("#splan").find('option').not(':first').remove();
+        $("#splan").val($("#splan option:first").val());
+      }
+    }
+  }
 
 }

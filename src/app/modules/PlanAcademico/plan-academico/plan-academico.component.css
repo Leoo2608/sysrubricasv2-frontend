@@ -28,6 +28,19 @@
     color: white;
 }
 .color-filtro{
-    background-color: #272525;
+  background-color: #000000;
     color: white;
+}
+#scampus{
+    min-width: 9em;
+    margin-right: 18em;
+}
+#sfac{
+    min-width: 11em;
+}
+#sesc{
+    min-width: 9em;
+}
+#filtro{
+    min-width: 8em;
 }

@@ -84,7 +84,8 @@ export class SidebarComponent implements OnInit {
     }
   }
   isModSeg():boolean{
-    if(this.router.url==='/moduloseg'){
+    if(this.router.url==='/moduloseg' || this.router.url==='/moduloseg/persona' || this.router.url==='/moduloseg/roles'
+    || this.router.url==='/moduloseg/modulos'){
       return true;
     }else{
       return false;

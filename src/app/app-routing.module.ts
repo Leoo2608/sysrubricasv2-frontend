@@ -31,13 +31,13 @@ const routes: Routes = [{
     path: 'moduloconfig',
     component: ModuloConfigComponent
   }, {
-    path: 'moduloconfig/persona',
+    path: 'moduloseg/persona',
     component: PersonaComponent
   },{
-    path: 'moduloconfig/roles',
+    path: 'moduloseg/roles',
     component: RolComponent
   }, {
-    path: 'moduloconfig/modulos',
+    path: 'moduloseg/modulos',
     component: ModuloComponent  
   }, {
     path: 'moduloplan',
@@ -52,7 +52,6 @@ const routes: Routes = [{
     path: 'moduloseg',
     component: ModuloSegComponent
   }, {
-    /* Agregar sus componentes a partir de aca */
     path: 'moduloconfig/lineas',
     component: LineaAcademicaComponent
   }, {

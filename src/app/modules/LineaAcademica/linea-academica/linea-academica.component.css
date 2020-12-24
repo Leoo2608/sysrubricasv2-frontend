@@ -1,7 +1,7 @@
 .alinear{
     display: flex;
     justify-content: flex-end;
-    margin-left: 5em;
+    margin-left: 2em;
 }
 .color-upeu{
     background-color: #7b1038;
@@ -9,9 +9,6 @@
 }
 .color-upeu-letras{
     color: #7b1038;
-}
-.tab{
-    max-width: 800px;
 }
 
 #nombre{
@@ -29,3 +26,5 @@
     background-color: rgb(177, 43, 43);
     color: white;
 }
+
+

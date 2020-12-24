@@ -36,3 +36,20 @@
     background-color: #272525;
     color: white;
 }
+#scampus{
+    min-width: 9em;
+    margin-right: 26em;
+}
+#sfac{
+    min-width: 11em;
+}
+#sesc{
+    min-width: 9em;
+}
+#filtro{
+    min-width: 8em;
+}
+.resize{
+    resize: none;
+    min-height: 6em;
+}

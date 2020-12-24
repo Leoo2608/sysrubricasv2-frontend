@@ -15,7 +15,7 @@ import { CompetenciaNivelComponent } from './modules/CompetenciaNivel/competenci
 import { CompetenciaComponent } from './modules/Competencia/competencia/competencia.component';
 import { CompetenciaCursoComponent } from './modules/CompetenciaCurso/competencia-curso/competencia-curso.component';
 import { LineaAcademicaComponent } from './modules/LineaAcademica/linea-academica/linea-academica.component';
-
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -36,7 +36,8 @@ import { LineaAcademicaComponent } from './modules/LineaAcademica/linea-academic
     AppRoutingModule,
     DefaultModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    DataTablesModule
   ],
   providers: [
   ],
